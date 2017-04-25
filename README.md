@@ -4,10 +4,10 @@
 
 ## Team
 
-  - teamMember
-  - teamMember
-  - teamMember
-  - teamMember
+  - Devon Weldon
+  - Matthew Aguirre
+  - Tabitha Hsia
+  - Yurika Jacobsson
 
 ## Table of Contents
 
