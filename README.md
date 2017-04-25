@@ -1,6 +1,6 @@
-# Project Name
+# Buzz
 
-> Pithy project description
+> Buzz allows users to select a San Francisco neighborhood that they would like to drink in.  After selecting the neighborhood, the user can either use the ‘Happy Hour Generator’ feature to populate a list of nearby happy hours or the ‘Category/Mood’ selector to generate a list of recommended bars ins such categories as “Dive Bars”, “Sports Bars”, “Dance Clubs”, etc.
 
 ## Team
 
