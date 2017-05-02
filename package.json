@@ -5,7 +5,8 @@
   "author": "server.js",
   "license": "",
   "engines": {
-    "node": ">=6.4.0"
+    "node": "7.8.0",
+    "npm": "4.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
