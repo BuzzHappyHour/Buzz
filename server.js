@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 // const db = require('./db');
 const app = express();
 
+var port = process.env.PORT || 1234;
+
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
@@ -15,6 +17,6 @@ app.get('/', function(req, res) {
   res.send('Heiii guys')
 })
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log('listening on port 3000');
 });
