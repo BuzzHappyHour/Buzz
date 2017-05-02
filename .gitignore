@@ -24,6 +24,12 @@ dist/
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:
-# see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
-node_modules/
-bower_components/
+# see https://npmjs.org/doc/faq.html#Should-I-check-my-#node_modules-folder-into-git
+#node_modules/
+#bower_components/
+
+# Keeping build artifacts out of git for the purpose of deployment
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
