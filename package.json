@@ -27,6 +27,14 @@
     "babel-register": "^6.7.2",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
   },
+  "env" : {
+    "buzzhappyhour-staging" : {
+      "required": true
+    },
+    "buzzhappyhour": {
+      "required": true
+    }
+  },
   "babel": {
     "presets": [
       "es2015"
