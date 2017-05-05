@@ -9,8 +9,8 @@ class ChoiceOfService extends React.Component {
   render() {
     return (
       <div>
-      <button value="Happy Hours" type="submt" onClick={(e)=> this.props.handleChoiceOfService(e.target.value)}>Happy Hour</button>
-      <button value="Vibes" type="submt" onClick={(e)=> this.props.handleChoiceOfService(e.target.value)}>Vibes</button>
+      <button value="Happy Hours" type="submit" onClick={(e)=> this.props.handleChoiceOfService(e.target.value)}>Happy Hour</button>
+      <button value="Vibes" type="submit" onClick={(e)=> this.props.handleChoiceOfService(e.target.value)}>Vibes</button>
       </div>
     );
   }
