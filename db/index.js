@@ -18,4 +18,4 @@ var getAllTenders = function(cb) {
 
 
 module.exports = connection;
-module.exports = getAllTenders;
+module.exports.getAllTenders = getAllTenders;
