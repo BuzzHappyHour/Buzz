@@ -1,7 +1,17 @@
 {
-  "name": "buzzhappyhour",
-  "description": "",
-  "repository": "https://github.com/hoodratz1/buzz",
-  "logo": "",
-  "keywords": ["node", "express", "static"]
+  "name": "buzz",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
 }
