@@ -9745,17 +9745,17 @@ var ChoiceOfService = function (_React$Component) {
 
       return _react2.default.createElement(
         "div",
-        null,
+        { className: "ButtonsDiv" },
         _react2.default.createElement(
           "button",
-          { value: "Happy Hours", type: "submit", onClick: function onClick(e) {
+          { className: "HappyHourButton", value: "Happy Hours", type: "submit", onClick: function onClick(e) {
               return _this2.props.handleChoiceOfService(e.target.value);
             } },
           "Happy Hour"
         ),
         _react2.default.createElement(
           "button",
-          { value: "Vibes", type: "submit", onClick: function onClick(e) {
+          { className: "VibesButton", value: "Vibes", type: "submit", onClick: function onClick(e) {
               return _this2.props.handleChoiceOfService(e.target.value);
             } },
           "Vibes"
