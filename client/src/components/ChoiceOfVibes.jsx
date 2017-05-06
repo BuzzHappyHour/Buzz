@@ -10,12 +10,12 @@ class ChoiceOfVibes extends React.Component {
   render() {
     return (
       <div className="VibesButtonsContainer">
-        <button>Basic</button>
-        <button>Bougie</button>
-        <button>Clubby</button>
-        <button>Divey</button>
-        <button>Hip</button>
-        <button>Sporty</button>
+        <button className="VibesChoiceButton" value="Basic" type="submit">Basic</button>
+        <button className="VibesChoiceButton" value="Bougie" type="submit">Bougie</button>
+        <button className="VibesChoiceButton" value="Clubby" type="submit">Clubby</button>
+        <button className="VibesChoiceButton" value="Divey" type="submit">Divey</button>
+        <button className="VibesChoiceButton" value="Hip" type="submit">Hip</button>
+        <button className="VibesChoiceButton" value="Sporty" type="submit">Sporty</button>
       </div>
     )
   }

@@ -22359,32 +22359,32 @@ var ChoiceOfVibes = function (_React$Component) {
         { className: "VibesButtonsContainer" },
         _react2.default.createElement(
           "button",
-          null,
+          { className: "VibesChoiceButton", value: "Basic", type: "submit" },
           "Basic"
         ),
         _react2.default.createElement(
           "button",
-          null,
+          { className: "VibesChoiceButton", value: "Bougie", type: "submit" },
           "Bougie"
         ),
         _react2.default.createElement(
           "button",
-          null,
+          { className: "VibesChoiceButton", value: "Clubby", type: "submit" },
           "Clubby"
         ),
         _react2.default.createElement(
           "button",
-          null,
+          { className: "VibesChoiceButton", value: "Divey", type: "submit" },
           "Divey"
         ),
         _react2.default.createElement(
           "button",
-          null,
+          { className: "VibesChoiceButton", value: "Hip", type: "submit" },
           "Hip"
         ),
         _react2.default.createElement(
           "button",
-          null,
+          { className: "VibesChoiceButton", value: "Sporty", type: "submit" },
           "Sporty"
         )
       );
