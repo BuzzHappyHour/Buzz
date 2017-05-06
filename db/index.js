@@ -21,4 +21,4 @@ var getAllBars = function(cb) {
 
 
 module.exports = connection;
-module.exports.getAllTenders = getAllTenders;
+module.exports.getAllBars = getAllBars;
