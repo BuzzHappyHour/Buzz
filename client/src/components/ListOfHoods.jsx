@@ -8,7 +8,9 @@ class ListOfHoods extends React.Component {
 
   render() {
     return (
-      <li onClick={(e)=> this.props.handleChoice(this.props.neighborhood)}>{this.props.neighborhood}</li>
+      <div className="HoodNameDiv">
+      <li className="HoodLI" onClick={(e)=> this.props.handleChoice(this.props.neighborhood)}>{this.props.neighborhood}</li>
+      </div>
     );
   }
 }

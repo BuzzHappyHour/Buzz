@@ -9596,16 +9596,24 @@ var App = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
-          'h1',
-          { onClick: function onClick() {
-              return window.location.reload();
-            } },
-          'Buzz'
+          'div',
+          { className: 'HeaderDiv' },
+          _react2.default.createElement(
+            'h1',
+            { onClick: function onClick() {
+                return window.location.reload();
+              } },
+            'Buzz'
+          )
         ),
         this.state.showChooseHood ? _react2.default.createElement(
-          'h2',
-          null,
-          'Choose a neighborhood'
+          'div',
+          { className: 'HoodSelectionDiv' },
+          _react2.default.createElement(
+            'h2',
+            null,
+            'Choose a neighborhood'
+          )
         ) : null,
         this.state.showChooseHood ? this.state.neighborhoods.map(function (hood) {
           return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood, handleChoice: _this2.handleNeighborhoodChoice });
@@ -9737,17 +9745,17 @@ var ChoiceOfService = function (_React$Component) {
 
       return _react2.default.createElement(
         "div",
-        null,
+        { className: "ButtonsDiv" },
         _react2.default.createElement(
           "button",
-          { value: "Happy Hours", type: "submit", onClick: function onClick(e) {
+          { className: "HappyHourButton", value: "Happy Hours", type: "submit", onClick: function onClick(e) {
               return _this2.props.handleChoiceOfService(e.target.value);
             } },
           "Happy Hour"
         ),
         _react2.default.createElement(
           "button",
-          { value: "Vibes", type: "submit", onClick: function onClick(e) {
+          { className: "VibesButton", value: "Vibes", type: "submit", onClick: function onClick(e) {
               return _this2.props.handleChoiceOfService(e.target.value);
             } },
           "Vibes"
@@ -9796,16 +9804,20 @@ var ListOfHoods = function (_React$Component) {
   }
 
   _createClass(ListOfHoods, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       var _this2 = this;
 
       return _react2.default.createElement(
-        'li',
-        { onClick: function onClick(e) {
-            return _this2.props.handleChoice(_this2.props.neighborhood);
-          } },
-        this.props.neighborhood
+        "div",
+        { className: "HoodNameDiv" },
+        _react2.default.createElement(
+          "li",
+          { className: "HoodLI", onClick: function onClick(e) {
+              return _this2.props.handleChoice(_this2.props.neighborhood);
+            } },
+          this.props.neighborhood
+        )
       );
     }
   }]);

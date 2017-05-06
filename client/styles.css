@@ -1,0 +1,77 @@
+
+body {
+   font-family: 'COUTUREBold';
+   font-weight: bold;
+   font-style: normal;
+   color:white;
+   background-color: #C7D8C6;
+}
+
+li {
+  list-style: none;
+}
+
+.HeaderDiv {
+  text-align: center;
+  line-height: 15vh;
+  font-size: 150%;
+  vertical-align: bottom;
+  width:70vw;
+  height: 15vh;
+  margin: auto;
+  background-color: #A9B7C0;
+  border-radius: 5px;
+
+}
+.HoodSelectionDiv {
+  margin:auto;
+  line-height: 13vh;
+  text-align: center;
+  width: 60vw;
+  height: 13vh;
+  border-radius: 5px;
+  background-color: #CCCBC6
+}
+
+.HoodNameDiv {
+  text-align: center;
+  line-height: 10vh;
+  vertical-align: middle;
+  margin:auto;
+  width: 50vw;
+  height: 10vh;
+  border-radius: 5px;
+  background-color: #984B43;
+  margin-top: 1%;
+  cursor: pointer;
+  font-size: 125%;
+}
+
+.ButtonsDiv {
+  margin: auto;
+  width: 35vw;
+  height: 50vh;
+  padding: 5%;
+  text-align:center;
+  font-size: 200%;
+  color: white;
+}
+
+.HappyHourButton {
+  margin: auto;
+  width: 20vw;
+  height: 15vh;
+  margin-bottom: 15%;
+  font-size: 100%;
+  color: white;
+  background-color: #9bf2e9;
+
+}
+.VibesButton {
+  margin: auto;
+  width: 20vw;
+  height: 15vh;
+  font-size: 100%;
+  color: white;
+  background-color: #9bf2e9;
+}
