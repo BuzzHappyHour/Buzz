@@ -14,7 +14,7 @@ class App extends React.Component {
       neighborhoods: ['SOMA', 'Tenderloin', 'Nob Hill', 'Pacific Heights'],
       happyHourOrAtts: '',
       choiceOfService: '',
-      bars: [{name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f'}, 
+      bars: [{name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f'},
       {name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
       {name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
       {name: 'Equator', neighborhood: 'SOMA', happyHours: '4-10 m-th'}
@@ -37,17 +37,20 @@ class App extends React.Component {
     console.log(this.state.neighborhood);
   }
 
-  
+
 
 
   render () {
     return (
     <div>
-      <h1 onClick={()=> window.location.reload()}>Buzz</h1>
-      {this.state.showChooseHood ? 
-        <h2>Choose a neighborhood</h2> : null
+      <div className="HeaderDiv">
+        <h1 onClick={()=> window.location.reload()}>Buzz</h1>
+      </div>
+      {this.state.showChooseHood ?
+
+        <div className="HoodSelectionDiv"><h2>Choose a neighborhood</h2></div> : null
       }
-      
+
       { this.state.showChooseHood ? this.state.neighborhoods.map(hood =>
          <ListOfHoods neighborhood={hood} handleChoice={this.handleNeighborhoodChoice}/>
        )
@@ -58,13 +61,13 @@ class App extends React.Component {
        }
 
        {
-         this.state.showBarList ? this.state.bars.map(bar=> 
+         this.state.showBarList ? this.state.bars.map(bar=>
            bar.neighborhood === this.state.neighborhood ? <BarList bar={bar}/> : null
-         
+
          ) : null
-         
+
        }
-      
+
 
     </div>
     );
