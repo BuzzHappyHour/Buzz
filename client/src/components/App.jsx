@@ -13,7 +13,7 @@ class App extends React.Component {
       showBarList: false,
       showVibesList: false,
       showChoiceOfService: false,
-      neighborhoods: ['SOMA', 'Tenderloin', 'Nob Hill', 'Pacific Heights'],
+      neighborhoods: ['SOMA', 'Tenderloin', 'Union Square / FiDi'],
       happyHourOrAtts: '',
       choiceOfService: '',
       choiceOfVibe: '',
