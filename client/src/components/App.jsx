@@ -3,6 +3,7 @@ import ListOfHoods from './ListOfHoods.jsx';
 import ChoiceOfService from './ChoiceOfService';
 import ChoiceOfVibes from './ChoiceOfVibes';
 import BarList from './BarList';
+import Header from './Header';
 
 class App extends React.Component {
   constructor(props) {
@@ -52,7 +53,6 @@ class App extends React.Component {
 
 
 
-
   render () {
     return (
     <div>
@@ -61,8 +61,12 @@ class App extends React.Component {
       </div>
       {this.state.showChooseHood ?
 
+<<<<<<< HEAD
         <div className="HoodSelectionDiv"><h2>Choose a neighborhood</h2></div> :
           <div className="HoodSelectionDiv"><h2>{this.state.neighborhood}</h2></div>
+=======
+        <div className="HoodSelectionDiv"><h2>Choose a neighborhood</h2></div> : <Header />
+>>>>>>> Working on the header
       }
 
       { this.state.showChooseHood ? this.state.neighborhoods.map(hood =>
