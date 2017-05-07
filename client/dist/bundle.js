@@ -9577,6 +9577,7 @@ var App = function (_React$Component) {
 
     _this.handleNeighborhoodChoice = _this.handleNeighborhoodChoice.bind(_this);
     _this.handleChoiceOfService = _this.handleChoiceOfService.bind(_this);
+    _this.handleChoiceOfVibes = _this.handleChoiceOfVibes.bind(_this);
 
     return _this;
   }
@@ -9596,6 +9597,11 @@ var App = function (_React$Component) {
       }
       console.log('choice is: ', choice);
       console.log(this.state.neighborhood);
+    }
+  }, {
+    key: 'handleChoiceOfVibes',
+    value: function handleChoiceOfVibes(vibe) {
+      console.log('Vibe selected is: ', vibe);
     }
   }, {
     key: 'render',
@@ -9629,7 +9635,7 @@ var App = function (_React$Component) {
           return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood, handleChoice: _this2.handleNeighborhoodChoice });
         }) : null,
         this.state.showChoiceOfService ? _react2.default.createElement(_ChoiceOfService2.default, { handleChoiceOfService: this.handleChoiceOfService }) : null,
-        this.state.showVibesList ? _react2.default.createElement(_ChoiceOfVibes2.default, null) : null,
+        this.state.showVibesList ? _react2.default.createElement(_ChoiceOfVibes2.default, { handleChoiceOfVibes: this.handleChoiceOfVibes }) : null,
         this.state.showBarList ? this.state.bars.map(function (bar) {
           return bar.neighborhood === _this2.state.neighborhood ? _react2.default.createElement(_BarList2.default, { bar: bar }) : null;
         }) : null
@@ -22354,37 +22360,57 @@ var ChoiceOfVibes = function (_React$Component) {
   _createClass(ChoiceOfVibes, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         "div",
         { className: "VibesButtonsContainer" },
         _react2.default.createElement(
           "button",
-          { className: "VibesChoiceButton", value: "Basic", type: "submit" },
+          { className: "VibesChoiceButton", value: "Basic", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
           "Basic"
         ),
         _react2.default.createElement(
           "button",
-          { className: "VibesChoiceButton", value: "Bougie", type: "submit" },
+          { className: "VibesChoiceButton", value: "Bougie", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
           "Bougie"
         ),
         _react2.default.createElement(
           "button",
-          { className: "VibesChoiceButton", value: "Clubby", type: "submit" },
+          { className: "VibesChoiceButton", value: "Clubby", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
           "Clubby"
         ),
         _react2.default.createElement(
           "button",
-          { className: "VibesChoiceButton", value: "Divey", type: "submit" },
+          { className: "VibesChoiceButton", value: "Divey", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
           "Divey"
         ),
         _react2.default.createElement(
           "button",
-          { className: "VibesChoiceButton", value: "Hip", type: "submit" },
+          { className: "VibesChoiceButton", value: "Hip", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
           "Hip"
         ),
         _react2.default.createElement(
           "button",
-          { className: "VibesChoiceButton", value: "Sporty", type: "submit" },
+          { className: "VibesChoiceButton", value: "Sporty", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
           "Sporty"
         )
       );

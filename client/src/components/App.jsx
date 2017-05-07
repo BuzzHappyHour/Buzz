@@ -27,6 +27,7 @@ class App extends React.Component {
 
     this.handleNeighborhoodChoice = this.handleNeighborhoodChoice.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
+    this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
 
   }
 
@@ -42,6 +43,10 @@ class App extends React.Component {
     }
     console.log('choice is: ' , choice)
     console.log(this.state.neighborhood);
+  }
+
+  handleChoiceOfVibes (vibe) {
+    console.log('Vibe selected is: ', vibe);
   }
 
 
@@ -68,7 +73,7 @@ class App extends React.Component {
        }
 
        {
-         this.state.showVibesList ? <ChoiceOfVibes /> : null
+         this.state.showVibesList ? <ChoiceOfVibes handleChoiceOfVibes={this.handleChoiceOfVibes}/> : null
        }
 
        {
