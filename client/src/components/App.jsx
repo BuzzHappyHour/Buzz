@@ -16,6 +16,7 @@ class App extends React.Component {
       neighborhoods: ['SOMA', 'Tenderloin', 'Nob Hill', 'Pacific Heights'],
       happyHourOrAtts: '',
       choiceOfService: '',
+      choiceOfVibe: '',
       bars: [{name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f'},
       {name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
       {name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
