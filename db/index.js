@@ -4,11 +4,12 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
   user: 'root',
   password: '',
-  database: 'mockup'
+  database: 'buzz'
 });
 
-var getAllTenders = function(cb) {
-  connection.query('SELECT * FROM tenderperson', function(err, result){
+var getAllBars = function(cb, hood) {
+  var query = `select * from bars inner join neighborhoods where neighborhoods.name = "${hood}" and neighborhoods.id = bars.neighborhood`;
+  connection.query(query, function(err, result) {
     cb(result);
   });
 };
@@ -18,4 +19,4 @@ var getAllTenders = function(cb) {
 
 
 module.exports = connection;
-module.exports.getAllTenders = getAllTenders;
+module.exports.getAllBars = getAllBars;
