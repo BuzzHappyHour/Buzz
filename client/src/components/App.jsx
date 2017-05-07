@@ -1,6 +1,7 @@
 import React from 'react';
 import ListOfHoods from './ListOfHoods.jsx';
 import ChoiceOfService from './ChoiceOfService';
+import ChoiceOfVibes from './ChoiceOfVibes';
 import BarList from './BarList';
 
 class App extends React.Component {
@@ -10,10 +11,12 @@ class App extends React.Component {
       neighborhood: '',
       showChooseHood: true,
       showBarList: false,
+      showVibesList: false,
       showChoiceOfService: false,
-      neighborhoods: ['SOMA', 'Tenderloin', 'Nob Hill', 'Pacific Heights'],
+      neighborhoods: ['SOMA', 'Tenderloin', 'Union Square / FiDi'],
       happyHourOrAtts: '',
       choiceOfService: '',
+      choiceOfVibe: '',
       bars: [{name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f'},
       {name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
       {name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
@@ -25,6 +28,7 @@ class App extends React.Component {
 
     this.handleNeighborhoodChoice = this.handleNeighborhoodChoice.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
+    this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
 
   }
 
@@ -33,8 +37,17 @@ class App extends React.Component {
   }
 
   handleChoiceOfService (choice) {
-    this.setState({choiceOfService: choice, showBarList: true, showChoiceOfService: false});
+    if(choice === 'Vibes') {
+      this.setState({choiceOfService: choice, showVibesList: true, showChoiceOfService: false});
+    } else {
+      this.setState({choiceOfService: choice, showBarList: true, showChoiceOfService: false});
+    }
+    console.log('choice is: ' , choice)
     console.log(this.state.neighborhood);
+  }
+
+  handleChoiceOfVibes (vibe) {
+    console.log('Vibe selected is: ', vibe);
   }
 
 
@@ -58,6 +71,10 @@ class App extends React.Component {
 
        {
          this.state.showChoiceOfService ? <ChoiceOfService handleChoiceOfService={this.handleChoiceOfService}/> : null
+       }
+
+       {
+         this.state.showVibesList ? <ChoiceOfVibes handleChoiceOfVibes={this.handleChoiceOfVibes}/> : null
        }
 
        {

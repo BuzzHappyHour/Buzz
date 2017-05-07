@@ -9538,6 +9538,10 @@ var _ChoiceOfService = __webpack_require__(84);
 
 var _ChoiceOfService2 = _interopRequireDefault(_ChoiceOfService);
 
+var _ChoiceOfVibes = __webpack_require__(186);
+
+var _ChoiceOfVibes2 = _interopRequireDefault(_ChoiceOfVibes);
+
 var _BarList = __webpack_require__(83);
 
 var _BarList2 = _interopRequireDefault(_BarList);
@@ -9562,16 +9566,19 @@ var App = function (_React$Component) {
       neighborhood: '',
       showChooseHood: true,
       showBarList: false,
+      showVibesList: false,
       showChoiceOfService: false,
-      neighborhoods: ['SOMA', 'Tenderloin', 'Nob Hill', 'Pacific Heights'],
+      neighborhoods: ['SOMA', 'Tenderloin', 'Union Square / FiDi'],
       happyHourOrAtts: '',
       choiceOfService: '',
+      choiceOfVibe: '',
       bars: [{ name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f' }, { name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th' }, { name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th' }, { name: 'Equator', neighborhood: 'SOMA', happyHours: '4-10 m-th' }]
 
     };
 
     _this.handleNeighborhoodChoice = _this.handleNeighborhoodChoice.bind(_this);
     _this.handleChoiceOfService = _this.handleChoiceOfService.bind(_this);
+    _this.handleChoiceOfVibes = _this.handleChoiceOfVibes.bind(_this);
 
     return _this;
   }
@@ -9584,8 +9591,18 @@ var App = function (_React$Component) {
   }, {
     key: 'handleChoiceOfService',
     value: function handleChoiceOfService(choice) {
-      this.setState({ choiceOfService: choice, showBarList: true, showChoiceOfService: false });
+      if (choice === 'Vibes') {
+        this.setState({ choiceOfService: choice, showVibesList: true, showChoiceOfService: false });
+      } else {
+        this.setState({ choiceOfService: choice, showBarList: true, showChoiceOfService: false });
+      }
+      console.log('choice is: ', choice);
       console.log(this.state.neighborhood);
+    }
+  }, {
+    key: 'handleChoiceOfVibes',
+    value: function handleChoiceOfVibes(vibe) {
+      console.log('Vibe selected is: ', vibe);
     }
   }, {
     key: 'render',
@@ -9619,6 +9636,7 @@ var App = function (_React$Component) {
           return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood, handleChoice: _this2.handleNeighborhoodChoice });
         }) : null,
         this.state.showChoiceOfService ? _react2.default.createElement(_ChoiceOfService2.default, { handleChoiceOfService: this.handleChoiceOfService }) : null,
+        this.state.showVibesList ? _react2.default.createElement(_ChoiceOfVibes2.default, { handleChoiceOfVibes: this.handleChoiceOfVibes }) : null,
         this.state.showBarList ? this.state.bars.map(function (bar) {
           return bar.neighborhood === _this2.state.neighborhood ? _react2.default.createElement(_BarList2.default, { bar: bar }) : null;
         }) : null
@@ -22302,6 +22320,108 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ChoiceOfVibes = function (_React$Component) {
+  _inherits(ChoiceOfVibes, _React$Component);
+
+  function ChoiceOfVibes(props) {
+    _classCallCheck(this, ChoiceOfVibes);
+
+    var _this = _possibleConstructorReturn(this, (ChoiceOfVibes.__proto__ || Object.getPrototypeOf(ChoiceOfVibes)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(ChoiceOfVibes, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        "div",
+        { className: "VibesButtonsContainer" },
+        _react2.default.createElement(
+          "button",
+          { className: "VibesChoiceButton", value: "Basic", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
+          "Basic"
+        ),
+        _react2.default.createElement(
+          "button",
+          { className: "VibesChoiceButton", value: "Bougie", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
+          "Bougie"
+        ),
+        _react2.default.createElement(
+          "button",
+          { className: "VibesChoiceButton", value: "Clubby", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
+          "Clubby"
+        ),
+        _react2.default.createElement(
+          "button",
+          { className: "VibesChoiceButton", value: "Divey", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
+          "Divey"
+        ),
+        _react2.default.createElement(
+          "button",
+          { className: "VibesChoiceButton", value: "Hip", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
+          "Hip"
+        ),
+        _react2.default.createElement(
+          "button",
+          { className: "VibesChoiceButton", value: "Sporty", type: "submit",
+            onClick: function onClick(e) {
+              return _this2.props.handleChoiceOfVibes(e.target.value);
+            } },
+          "Sporty"
+        )
+      );
+    }
+  }]);
+
+  return ChoiceOfVibes;
+}(_react2.default.Component);
+
+exports.default = ChoiceOfVibes;
 
 /***/ })
 /******/ ]);
