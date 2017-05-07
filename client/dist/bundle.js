@@ -9631,7 +9631,15 @@ var App = function (_React$Component) {
             null,
             'Choose a neighborhood'
           )
-        ) : null,
+        ) : _react2.default.createElement(
+          'div',
+          { className: 'HoodSelectionDiv' },
+          _react2.default.createElement(
+            'h2',
+            null,
+            this.state.neighborhood
+          )
+        ),
         this.state.showChooseHood ? this.state.neighborhoods.map(function (hood) {
           return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood, handleChoice: _this2.handleNeighborhoodChoice });
         }) : null,
@@ -9694,25 +9702,24 @@ var BarList = function (_React$Component) {
   }
 
   _createClass(BarList, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        null,
+        "div",
+        { className: "BarListItem" },
         _react2.default.createElement(
-          'h4',
+          "h3",
           null,
-          'Name: '
+          "Name: ",
+          this.props.bar.name
         ),
-        this.props.bar.name,
-        ' ',
+        " ",
         _react2.default.createElement(
-          'h4',
+          "h3",
           null,
-          'Happy Hours: '
-        ),
-        ' ',
-        this.props.bar.happyHours
+          "Happy Hours: ",
+          this.props.bar.happyHours
+        )
       );
     }
   }]);
