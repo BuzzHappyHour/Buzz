@@ -22,8 +22,12 @@ app.use('/', express.static(__dirname + '/client'));
 
 
 
-app.get('/tenders', function(req, res) {
-  db.getAllTenders(tenders => res.send(tenders));
+app.get('/soma', function(req, res) {
+  db.getAllBars(tenders => res.send(tenders), 'SOMA');
+});
+
+app.get('/tenderloin', function(req, res) {
+  db.getAllBars(tenders => res.send(tenders), 'Tenderloin');
 });
 
 app.listen(port, function() {
