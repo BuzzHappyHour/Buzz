@@ -94,3 +94,11 @@ li {
   color: white;
   background-color: #9bf2e9;
 }
+
+.BarListItem {
+  margin:auto;
+  width: 40vw;
+  height: 20vh;
+  border-radius: 5px;
+  background-color: #a6c4c0;
+}

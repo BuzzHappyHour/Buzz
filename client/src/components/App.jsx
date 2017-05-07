@@ -61,7 +61,8 @@ class App extends React.Component {
       </div>
       {this.state.showChooseHood ?
 
-        <div className="HoodSelectionDiv"><h2>Choose a neighborhood</h2></div> : null
+        <div className="HoodSelectionDiv"><h2>Choose a neighborhood</h2></div> :
+          <div className="HoodSelectionDiv"><h2>{this.state.neighborhood}</h2></div>
       }
 
       { this.state.showChooseHood ? this.state.neighborhoods.map(hood =>

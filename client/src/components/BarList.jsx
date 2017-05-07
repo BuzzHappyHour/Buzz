@@ -8,7 +8,9 @@ class BarList extends React.Component {
 
   render() {
     return (
-      <div><h4>Name: </h4>{this.props.bar.name} <h4>Happy Hours: </h4> {this.props.bar.happyHours}</div>
+      <div className="BarListItem">
+        <h3>Name: {this.props.bar.name}</h3> <h3>Happy Hours: {this.props.bar.happyHours}</h3> 
+      </div>
     );
   }
 }
