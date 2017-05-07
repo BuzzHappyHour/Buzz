@@ -4,15 +4,12 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
   user: 'root',
   password: '',
-  database: 'buzz'
+  database: 'mockup'
 });
 
-var getAllBars = function(cb) {
-  connection.query('SELECT * FROM bars', function(err, result){
-    if(err){
-      cb(err, null);
-    }
-    cb(null, result);
+var getAllTenders = function(cb) {
+  connection.query('SELECT * FROM tenderperson', function(err, result){
+    cb(result);
   });
 };
 
