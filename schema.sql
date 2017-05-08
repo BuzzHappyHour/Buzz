@@ -2,43 +2,34 @@ DROP DATABASE IF EXISTS buzz;
 
 CREATE DATABASE buzz;
 
-USE buzz;
+\c buzz;
 
 CREATE TABLE neighborhoods (
-  id int NOT NULL AUTO_INCREMENT,
-  name VARCHAR(50) NOT NULL,
-  PRIMARY KEY (id)
+  id SERIAL PRIMARY KEY,
+  name VARCHAR
 );
 
-
 CREATE TABLE attributes (
-  id int NOT NULL AUTO_INCREMENT,
-  attribute VARCHAR(50),
-  PRIMARY KEY(id)
+  id SERIAL PRIMARY KEY,
+  attribute VARCHAR
 );
 
 CREATE TABLE categories (
-  id int NOT NULL AUTO_INCREMENT,
-  category VARCHAR(50),
-  PRIMARY KEY(id)
+  id SERIAL PRIMARY KEY,
+  category VARCHAR
 );
 
 CREATE TABLE bars (
-  id int NOT NULL AUTO_INCREMENT,
-  name VARCHAR(50),
-  location VARCHAR(150),
-  neighborhood INT,
-  category INT,
-  PRIMARY KEY(id),
-  FOREIGN KEY (neighborhood) REFERENCES neighborhoods(id),
-  FOREIGN KEY (category) REFERENCES categories(id)
+  id SERIAL PRIMARY KEY,
+  name VARCHAR,
+  location VARCHAR,
+  neighborhood INTEGER REFERENCES neighborhoods(id),
+  category INTEGER REFERENCES categories(id)
 );
 
 CREATE TABLE bars_attributes (
-  bar_id INT,
-  attribute_id INT,
-  FOREIGN KEY (bar_id) REFERENCES bars(id),
-  FOREIGN KEY (attribute_id) REFERENCES attributes(id)
+  bar_id INTEGER REFERENCES bars(id),
+  attribute_id INTEGER REFERENCES attributes(id)
 );
 
 INSERT INTO neighborhoods (name) values ('Tenderloin');
@@ -82,15 +73,5 @@ INSERT INTO bars_attributes(bar_id, attribute_id) values (2, 7);
 
 INSERT INTO bars (name, location, neighborhood, category ) values ('Jones', '620 Jones St', 1, 1);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (3, 4);
-
-
-
-
-
-
-
-
-
-
 
 
