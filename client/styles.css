@@ -47,7 +47,7 @@ li {
   width: 50vw;
   height: 10vh;
   border-radius: 5px;
-  background-color: #984B43;
+  background-color: #73627c;
   margin-top: 1%;
   cursor: pointer;
   font-size: 125%;
@@ -55,7 +55,7 @@ li {
 
 .ButtonsDiv {
   margin: auto;
-  width: 35vw;
+  width: 70vw;
   height: 50vh;
   padding: 1%;
   text-align:center;
@@ -68,10 +68,10 @@ li {
   margin: auto;
   width: 50vw;
   height: 15vh;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
   font-size: 100%;
   color: white;
-  background-color: #984B43;
+  background-color: #73627c;
   border: 0;
   border-radius: 5px;
 
@@ -83,7 +83,7 @@ li {
   height: 15vh;
   font-size: 100%;
   color: white;
-  background-color: #984B43;
+  background-color:  #73627c;
   border: 0;
   border-radius: 5px;
 }
