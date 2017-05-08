@@ -3,6 +3,7 @@ import ListOfHoods from './ListOfHoods.jsx';
 import ChoiceOfService from './ChoiceOfService';
 import ChoiceOfVibes from './ChoiceOfVibes';
 import BarList from './BarList';
+import Header from './Header';
 
 class App extends React.Component {
   constructor(props) {
@@ -49,7 +50,6 @@ class App extends React.Component {
   handleChoiceOfVibes (vibe) {
     console.log('Vibe selected is: ', vibe);
   }
-
 
 
 
