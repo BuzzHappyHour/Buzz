@@ -1,10 +1,15 @@
 
 body {
    font-family: 'COUTUREBold';
-   font-weight: bold;
    font-style: normal;
-   color:white;
+   color: white;
    background-color: #C7D8C6;
+   background: url(background.jpg);
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-size:100% 100vh;
+   padding-top: 5vh;
+/*   position: absolute;*/
 }
 
 li {
@@ -12,22 +17,23 @@ li {
 }
 
 .HeaderDiv {
+  font-family: 'lobster';
   text-align: center;
   line-height: 15vh;
-  font-size: 150%;
+  font-size: 350%;
   vertical-align: bottom;
   width:70vw;
-  height: 15vh;
+  height: 12vh;
   margin: auto;
-  background-color: #A9B7C0;
+  /*background-color: #A9B7C0;*/
   border-radius: 5px;
 
 }
 .HoodSelectionDiv {
-  margin:auto;
+  margin: auto;
   line-height: 13vh;
   text-align: center;
-  width: 60vw;
+  width: 50vw;
   height: 13vh;
   border-radius: 5px;
   background-color: #CCCBC6
@@ -51,53 +57,61 @@ li {
   margin: auto;
   width: 35vw;
   height: 50vh;
-  padding: 5%;
+  padding: 1%;
   text-align:center;
-  font-size: 200%;
+  font-size: 125%;
   color: white;
 }
 
 .HappyHourButton {
+  font-family: 'COUTUREBold';
   margin: auto;
-  width: 20vw;
+  width: 50vw;
   height: 15vh;
-  margin-bottom: 15%;
+  margin-bottom: 5%;
   font-size: 100%;
   color: white;
-  background-color: #9bf2e9;
+  background-color: #984B43;
+  border: 0;
+  border-radius: 5px;
 
 }
 .VibesButton {
+  font-family: 'COUTUREBold';
   margin: auto;
-  width: 20vw;
+  width: 50vw;
   height: 15vh;
   font-size: 100%;
   color: white;
-  background-color: #9bf2e9;
+  background-color: #984B43;
+  border: 0;
+  border-radius: 5px;
 }
 
 .VibesButtonsContainer {
   margin: auto;
   width: 35vw;
-  height: 50vh;
-  padding: 5%;
-  text-align:center;
+  height: 35vh;
+  text-align: center;
   font-size: 200%;
   color: white;
 }
 
 .VibesChoiceButton {
+  font-family: 'COUTUREBold';
   margin: 3%;
   width: 15vw;
   height: 10vh;
-  font-size: 100%;
+  font-size: 75%;
   color: white;
-  background-color: #9bf2e9;
+  background-color: #a6c4c0;
+  border: 0;
+  border-radius: 5px;
 }
 
 .BarListItem {
   margin:auto;
-  width: 40vw;
+  width: 50vw;
   height: 20vh;
   border-radius: 5px;
   background-color: #a6c4c0;
