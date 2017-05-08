@@ -4,6 +4,7 @@ import ChoiceOfService from './ChoiceOfService';
 import ChoiceOfVibes from './ChoiceOfVibes';
 import BarList from './BarList';
 import Header from './Header';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends React.Component {
       happyHourOrAtts: '',
       choiceOfService: '',
       choiceOfVibe: '',
+      neighborhoodBars: [],
       bars: [{name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f'},
       {name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
       {name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
@@ -27,9 +29,11 @@ class App extends React.Component {
     };
 
 
+
     this.handleNeighborhoodChoice = this.handleNeighborhoodChoice.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
+    this.getBasedOnNeighborhood = this.getBasedOnNeighborhood.bind(this);
 
   }
 
@@ -49,8 +53,19 @@ class App extends React.Component {
 
   handleChoiceOfVibes (vibe) {
     console.log('Vibe selected is: ', vibe);
+    console.log('bars', this.state.neighborhoodBars);
   }
 
+
+  
+  getBasedOnNeighborhood (neighborhood) {
+    $.get(`/${neighborhood}`, function(data) {
+      this.setState({neighborhoodBars: data});
+    }.bind(this))
+    .fail(function() {
+      alert('error retrieving data'); 
+    });
+  }
 
 
   render () {
@@ -66,7 +81,7 @@ class App extends React.Component {
       }
 
       { this.state.showChooseHood ? this.state.neighborhoods.map(hood =>
-         <ListOfHoods neighborhood={hood} handleChoice={this.handleNeighborhoodChoice}/>
+         <ListOfHoods neighborhood={hood} getBasedOnNeighborhood={this.getBasedOnNeighborhood} handleChoice={this.handleNeighborhoodChoice}/>
        )
        : null }
 
