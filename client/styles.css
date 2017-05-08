@@ -16,15 +16,19 @@ li {
   list-style: none;
 }
 
+button {
+  cursor: pointer;
+}
 .HeaderDiv {
   font-family: 'lobster';
   text-align: center;
   line-height: 15vh;
   font-size: 350%;
   vertical-align: bottom;
-  width:70vw;
+  width:30vw;
   height: 12vh;
   margin: auto;
+  cursor: pointer;
   /*background-color: #A9B7C0;*/
   border-radius: 5px;
 
