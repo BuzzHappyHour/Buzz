@@ -1,8 +1,8 @@
-import React from 'react';
+/*import React from 'react';
 
 class ChoiceOfVibes extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {};
   }
@@ -23,7 +23,37 @@ class ChoiceOfVibes extends React.Component {
         <button className="VibesChoiceButton" value="Sporty" type="submit"
           onClick={(e)=> this.props.handleChoiceOfVibes(e.target.value)}>Sporty</button>
       </div>
-    )
+    );
+  }
+}
+
+export default ChoiceOfVibes;*/
+
+
+import React from 'react';
+import VibesList from './VibesList';
+
+class ChoiceOfVibes extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      vibe: ''
+    };
+
+  }
+
+
+  render() {
+    return (
+      <div className="VibesButtonsContainer">
+        { 
+          this.props.categories.map(cat=>
+            <VibesList category={cat.category} categoryID={cat.id} handleChoiceOfVibes={this.props.handleChoiceOfVibes} />
+          )
+        }
+      </div>
+    );
   }
 }
 
