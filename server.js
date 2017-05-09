@@ -19,6 +19,7 @@ app.get('/bars', db.getAllBars);
 app.get('/Tenderloin', (req, res)=> db.getNeighborhoodBars(req, res, 'Tenderloin'));
 app.get('/SOMA', (req, res)=> db.getNeighborhoodBars(req, res, 'SOMA'));
 app.get('/categories', db.getAllCategories);
+app.get('/attributes', (req, res)=>db.getAttributes(req, res, 2));
 
 app.listen(port, function() {
   console.log('listening on port ' + port);

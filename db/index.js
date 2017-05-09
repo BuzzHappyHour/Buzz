@@ -26,6 +26,22 @@ getNeighborhoodBars = function(req, res, neighborhood) {
     });
 };
 
+// getNeighborhoodBars = function(req, res, neighborhood) {
+//   db.query(`SELECT bars.name, bars.location, bars.category FROM bars INNER JOIN neighborhoods ON (neighborhoods.name = '${neighborhood}') and (neighborhoods.id = bars.neighborhood)`)
+//     .then(function(data) {
+//       res.status(200).send(data);
+//     });
+// };
+
+getAttributes = function(req, res, id) {
+  db.query(`SELECT attributes.attribute, bars.category, bars.location, bars.hhstart, bars.hhend, bars.name FROM attributes INNER JOIN bars_attributes ON attributes.id = bars_attributes.attribute_id INNER JOIN bars ON bars.id = bars_attributes.bar_id AND bars.neighborhood = ${id}`)
+    .then(function(data) {
+      res.status(200).send(data);
+    });
+};
+
+
+
 
 // getNeighborhoodBars = function(req, res, neighborhood, category, id) {
 //   db.query(`SELECT bars.name, bars.location, bars.category FROM bars INNER JOIN neighborhoods ON (neighborhoods.name = '${neighborhood}') and (neighborhoods.id = bars.neighborhood) INNER JOIN categories ON (categories.id = bars.category) and (categories.id = 3)
@@ -54,3 +70,4 @@ getAllCategories = function(req, res, next) {
 module.exports.getAllBars = getAllBars;
 module.exports.getNeighborhoodBars = getNeighborhoodBars;
 module.exports.getAllCategories = getAllCategories;
+module.exports.getAttributes = getAttributes;
