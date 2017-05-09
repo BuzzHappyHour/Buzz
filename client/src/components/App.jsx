@@ -24,15 +24,15 @@ class App extends React.Component {
       vibeID: '',
       categories: [],
       neighborhoodBars: [],
-      bars: [{name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f'},
+      bars: [{name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f', hasHappyHour:true, attributes: ['good music', 'games']},
       {name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
       {name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
-      {name: 'Equator', neighborhood: 'SOMA', happyHours: '4-10 m-th'}
+      {name: 'Equator', neighborhood: 'SOMA', happyHours: '4-10 m-th', hasHappyHour:true, attributes: ['Artsy']}
       ]
 
     };
 
-    
+
 
 
     $.get('/categories', function(data) {
@@ -40,11 +40,11 @@ class App extends React.Component {
       console.log(this.state.categories);
     }.bind(this))
     .fail(function() {
-      alert('error retrieving data'); 
+      alert('error retrieving data');
     });
 
     console.log(this.state.choiceOfVibe);
-    
+
     this.handleNeighborhoodChoice = this.handleNeighborhoodChoice.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
@@ -72,17 +72,17 @@ class App extends React.Component {
   }
 
 
-  
+
   getBasedOnNeighborhood (neighborhood) {
     $.get(`/${neighborhood}`, function(data) {
       this.setState({neighborhoodBars: data});
     }.bind(this))
     .fail(function() {
-      alert('error retrieving data'); 
+      alert('error retrieving data');
     });
   }
 
-  
+
 
 
   render () {
@@ -95,6 +95,7 @@ class App extends React.Component {
 
         <div className="HoodSelectionDiv"><h2>Choose a neighborhood</h2></div> :
           <div className="HoodSelectionDiv"><h2>{this.state.neighborhood}</h2></div>
+
       }
 
       { this.state.showChooseHood ? this.state.neighborhoods.map(hood =>
@@ -122,7 +123,7 @@ class App extends React.Component {
            bar.category === this.state.vibeID ? <VibesMatchList bar={bar} /> : null
          ) : null
        }
-       
+
 
 
     </div>
