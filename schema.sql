@@ -24,7 +24,9 @@ CREATE TABLE bars (
   name VARCHAR,
   location VARCHAR,
   neighborhood INTEGER REFERENCES neighborhoods(id),
-  category INTEGER REFERENCES categories(id)
+  category INTEGER REFERENCES categories(id),
+  hhstart INTEGER,
+  hhend INTEGER
 );
 
 CREATE TABLE bars_attributes (
@@ -62,16 +64,16 @@ INSERT INTO categories (category) values ('Hip');
 INSERT INTO categories (category) values ('Clubby');
 INSERT INTO categories (category) values ('Sporty');
 
-INSERT INTO bars (name, location, neighborhood, category ) values ('Atlas Tap Room', '606 Mission Street', 2, 3);
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Atlas Tap Room', '606 Mission Street', 2, 3, 15, 17);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (1, 15);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (1, 11);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (1, 7);
 
-INSERT INTO bars (name, location, neighborhood, category ) values ('Anchor & Hope', '83 Minna St', 2, 2);
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Anchor & Hope', '83 Minna St', 2, 2, 14, 16);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (2, 16);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (2, 7);
 
-INSERT INTO bars (name, location, neighborhood, category ) values ('Jones', '620 Jones St', 1, 1);
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Jones', '620 Jones St', 1, 1, 13, 15);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (3, 4);
 
 
