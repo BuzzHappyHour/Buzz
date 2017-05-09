@@ -8,8 +8,9 @@ body {
    background-size: cover;
    background-repeat: no-repeat;
    background-size:100% 100vh;
-   padding-top: 5vh;
+   /*padding-top: 5vh;*/
 /*   position: absolute;*/
+  overflow: hidden;
 }
 
 li {
@@ -40,7 +41,7 @@ button {
   width: 50vw;
   height: 13vh;
   border-radius: 5px;
-  background-color: #CCCBC6
+  background-color: #a291bc;
 }
 
 .HoodNameDiv {
@@ -118,5 +119,45 @@ button {
   width: 50vw;
   height: 20vh;
   border-radius: 5px;
-  background-color: #a6c4c0;
+  border: 2px solid #6726e0;
+  background-color: #73627c;
+  text-align: center;
+
+  overflow: hidden;
+  margin-top: 2%;
+
+}
+.BarNameHeader {
+  margin-top: 0.2%;
+}
+.HappyHourHeader {
+
+}
+
+
+.VibeMatchList {
+  margin:auto;
+  width: 50vw;
+  height: 20vh;
+  border-radius: 5px;
+  background-color: #73627c;
+  text-align: center;
+}
+
+.AttributeLabel {
+  width:12vw;
+  height: 4vh;
+  white-space: nowrap;
+  background-color: #a291bc;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 4vh;
+  vertical-align: middle;
+  /*float: left;*/
+  margin-left: 2%;
+  margin-top: 0%;
+  display: inline-block;
+  box-sizing: content-box;
+  overflow: hidden;
+
 }

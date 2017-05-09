@@ -9588,7 +9588,7 @@ var App = function (_React$Component) {
       vibeID: '',
       categories: [],
       neighborhoodBars: [],
-      bars: [{ name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f' }, { name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th' }, { name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th' }, { name: 'Equator', neighborhood: 'SOMA', happyHours: '4-10 m-th' }]
+      bars: [{ name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f', hasHappyHour: true, attributes: ['good music', 'games'] }, { name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th' }, { name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th' }, { name: 'Equator', neighborhood: 'SOMA', happyHours: '4-10 m-th', hasHappyHour: true, attributes: ['Artsy'] }]
 
     };
 
@@ -9746,19 +9746,26 @@ var BarList = function (_React$Component) {
       return _react2.default.createElement(
         "div",
         { className: "BarListItem" },
+        console.log(this.props.bar.attributes),
         _react2.default.createElement(
           "h3",
-          null,
-          "Name: ",
+          { className: "BarNameHeader" },
           this.props.bar.name
         ),
         " ",
         _react2.default.createElement(
           "h3",
-          null,
+          { className: "HappyHourHeader" },
           "Happy Hours: ",
           this.props.bar.happyHours
-        )
+        ),
+        this.props.bar.attributes.map(function (attribute) {
+          return _react2.default.createElement(
+            "p",
+            { className: "AttributeLabel" },
+            attribute
+          );
+        })
       );
     }
   }]);
