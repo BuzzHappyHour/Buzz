@@ -16,8 +16,8 @@ app.use('/client', express.static(__dirname + '/client'));
 app.use('/', express.static(__dirname + '/client'));
 
 app.get('/bars', db.getAllBars);
-app.get('/Tenderloin', (req, res)=> db.getNeighborhoodBars(req, res, 'Tenderloin'));
-app.get('/SOMA', (req, res)=> db.getNeighborhoodBars(req, res, 'SOMA'));
+app.get('/Tenderloin', (req, res)=>db.getAttributes(req, res, 1));
+app.get('/SOMA', (req, res)=>db.getAttributes(req, res, 2));
 app.get('/categories', db.getAllCategories);
 app.get('/attributes', (req, res)=>db.getAttributes(req, res, 2));
 

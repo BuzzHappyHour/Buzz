@@ -9587,7 +9587,6 @@ var App = function (_React$Component) {
       choiceOfService: '',
       choiceOfVibe: '',
       vibeID: '',
-      testArr: [],
       categories: [],
       neighborhoodBars: [],
       bars: [{ name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f', hasHappyHour: true, attributes: ['good music', 'games'] }, { name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th' }, { name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th' }, { name: 'Equator', neighborhood: 'SOMA', happyHours: '4-10 m-th', hasHappyHour: true, attributes: ['Artsy'] }]
@@ -9601,43 +9600,11 @@ var App = function (_React$Component) {
       alert('error retrieving data');
     });
 
-    _jquery2.default.get('/attributes', function (data) {
-      var obj = {};
-      var arr = [];
-      data.forEach(function (item) {
-        if (!obj[item.name]) {
-          obj[item.name] = true;
-        }
-      });
-      var newArr = Object.keys(obj).map(function (item) {
-        var returnObj = { name: item };
-        returnObj.attributes = [];
-        returnObj.location = '';
-        returnObj.start = '';
-        returnObj.end = '';
-        data.forEach(function (item2) {
-          if (returnObj.name === item2.name) {
-            returnObj.attributes.push(item2.attribute);
-            if (!returnObj.location && !returnObj.start && !returnObj.end && !returnObj.category) {
-              returnObj.location = item2.location;
-              returnObj.start = item2.hhstart;
-              returnObj.end = item2.hhend;
-              returnObj.category = item2.category;
-            }
-          }
-        });
-        return returnObj;
-      });
-      this.setState({ testArr: newArr });
-      console.log(this.state.testArr);
-    }.bind(_this)).fail(function () {
-      alert('error retrieving data');
-    });
-
     _this.handleNeighborhoodChoice = _this.handleNeighborhoodChoice.bind(_this);
     _this.handleChoiceOfService = _this.handleChoiceOfService.bind(_this);
     _this.handleChoiceOfVibes = _this.handleChoiceOfVibes.bind(_this);
     _this.getBasedOnNeighborhood = _this.getBasedOnNeighborhood.bind(_this);
+    _this.tester = _this.tester.bind(_this);
 
     return _this;
   }
@@ -9669,6 +9636,41 @@ var App = function (_React$Component) {
     value: function getBasedOnNeighborhood(neighborhood) {
       _jquery2.default.get('/' + neighborhood, function (data) {
         this.setState({ neighborhoodBars: data });
+      }.bind(this)).fail(function () {
+        alert('error retrieving data');
+      });
+    }
+  }, {
+    key: 'tester',
+    value: function tester(neighborhood) {
+      _jquery2.default.get('/' + neighborhood, function (data) {
+        var obj = {};
+        var arr = [];
+        data.forEach(function (item) {
+          if (!obj[item.name]) {
+            obj[item.name] = true;
+          }
+        });
+        var newArr = Object.keys(obj).map(function (item) {
+          var returnObj = { name: item };
+          returnObj.attributes = [];
+          returnObj.location = '';
+          returnObj.start = '';
+          returnObj.end = '';
+          data.forEach(function (item2) {
+            if (returnObj.name === item2.name) {
+              returnObj.attributes.push(item2.attribute);
+              if (!returnObj.location && !returnObj.start && !returnObj.end && !returnObj.category) {
+                returnObj.location = item2.location;
+                returnObj.start = item2.hhstart;
+                returnObj.end = item2.hhend;
+                returnObj.category = item2.category;
+              }
+            }
+          });
+          return returnObj;
+        });
+        this.setState({ neighborhoodBars: newArr });
       }.bind(this)).fail(function () {
         alert('error retrieving data');
       });
@@ -9710,7 +9712,7 @@ var App = function (_React$Component) {
           )
         ),
         this.state.showChooseHood ? this.state.neighborhoods.map(function (hood) {
-          return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood.name, neighborhoodID: hood.id, getBasedOnNeighborhood: _this2.getBasedOnNeighborhood, handleChoice: _this2.handleNeighborhoodChoice });
+          return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood.name, neighborhoodID: hood.id, getBasedOnNeighborhood: _this2.getBasedOnNeighborhood, tester: _this2.tester, handleChoice: _this2.handleNeighborhoodChoice });
         }) : null,
         this.state.showChoiceOfService ? _react2.default.createElement(_ChoiceOfService2.default, { handleChoiceOfService: this.handleChoiceOfService }) : null,
         this.state.showVibesList ? _react2.default.createElement(_ChoiceOfVibes2.default, { handleChoiceOfVibes: this.handleChoiceOfVibes, categories: this.state.categories }) : null,
@@ -10065,7 +10067,7 @@ var ListOfHoods = function (_React$Component) {
         _react2.default.createElement(
           "li",
           { className: "HoodLI", onClick: function onClick(e) {
-              _this2.props.handleChoice(_this2.props.neighborhood, _this2.props.neighborhoodID);_this2.props.getBasedOnNeighborhood(_this2.props.neighborhood);
+              _this2.props.handleChoice(_this2.props.neighborhood, _this2.props.neighborhoodID);_this2.props.tester(_this2.props.neighborhood);
             } },
           this.props.neighborhood
         )

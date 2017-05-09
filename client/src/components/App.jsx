@@ -23,7 +23,6 @@ class App extends React.Component {
       choiceOfService: '',
       choiceOfVibe: '',
       vibeID: '',
-      testArr: [],
       categories: [],
       neighborhoodBars: [],
       bars: [{name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f', hasHappyHour:true, attributes: ['good music', 'games']},
@@ -36,7 +35,6 @@ class App extends React.Component {
 
 
 
-
     $.get('/categories', function(data) {
       this.setState({categories: data});
       console.log(this.state.categories);
@@ -45,47 +43,12 @@ class App extends React.Component {
       alert('error retrieving data');
     });
     
-    $.get('/attributes', function(data) {
-      var obj = {};
-      var arr = [];
-      data.forEach((item)=>{
-        if (!obj[item.name]) {
-          obj[item.name] = true;
-        }
-      });
-      var newArr = Object.keys(obj).map(function(item) {
-        var returnObj = {name: item};
-        returnObj.attributes = [];
-        returnObj.location = '';
-        returnObj.start = '';
-        returnObj.end = '';
-        data.forEach(function(item2) {
-          if (returnObj.name === item2.name) {
-            returnObj.attributes.push(item2.attribute);
-            if (!returnObj.location && !returnObj.start && !returnObj.end && !returnObj.category) {
-              returnObj.location = item2.location;
-              returnObj.start = item2.hhstart;
-              returnObj.end = item2.hhend;
-              returnObj.category = item2.category;
-            }
-          }
-        });
-        return returnObj;
-      });
-      this.setState({testArr: newArr});
-      console.log(this.state.testArr);
-      
-    }.bind(this))
-    .fail(function() {
-      alert('error retrieving data');
-    });
 
-
-    
     this.handleNeighborhoodChoice = this.handleNeighborhoodChoice.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
     this.getBasedOnNeighborhood = this.getBasedOnNeighborhood.bind(this);
+    this.tester = this.tester.bind(this);
 
   }
 
@@ -119,6 +82,42 @@ class App extends React.Component {
     });
   }
 
+  tester (neighborhood) {
+    $.get(`/${neighborhood}`, function(data) {
+      var obj = {};
+      var arr = [];
+      data.forEach((item)=>{
+        if (!obj[item.name]) {
+          obj[item.name] = true;
+        }
+      });
+      var newArr = Object.keys(obj).map(function(item) {
+        var returnObj = {name: item};
+        returnObj.attributes = [];
+        returnObj.location = '';
+        returnObj.start = '';
+        returnObj.end = '';
+        data.forEach(function(item2) {
+          if (returnObj.name === item2.name) {
+            returnObj.attributes.push(item2.attribute);
+            if (!returnObj.location && !returnObj.start && !returnObj.end && !returnObj.category) {
+              returnObj.location = item2.location;
+              returnObj.start = item2.hhstart;
+              returnObj.end = item2.hhend;
+              returnObj.category = item2.category;
+            }
+          }
+        });
+        return returnObj;
+      });
+      this.setState({neighborhoodBars: newArr});
+      
+    }.bind(this))
+    .fail(function() {
+      alert('error retrieving data');
+    });
+  }
+
 
 
 
@@ -137,7 +136,7 @@ class App extends React.Component {
       }
 
       { this.state.showChooseHood ? this.state.neighborhoods.map(hood =>
-         <ListOfHoods neighborhood={hood.name} neighborhoodID={hood.id} getBasedOnNeighborhood={this.getBasedOnNeighborhood} handleChoice={this.handleNeighborhoodChoice}/>
+         <ListOfHoods neighborhood={hood.name} neighborhoodID={hood.id} getBasedOnNeighborhood={this.getBasedOnNeighborhood} tester={this.tester} handleChoice={this.handleNeighborhoodChoice}/>
        )
        : null }
 
