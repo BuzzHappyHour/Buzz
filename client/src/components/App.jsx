@@ -5,6 +5,7 @@ import ChoiceOfVibes from './ChoiceOfVibes';
 import BarList from './BarList';
 import Header from './Header';
 import VibesMatchList from './VibesMatchList';
+import Signup from './Signup';
 import $ from 'jquery';
 
 class App extends React.Component {
@@ -42,13 +43,15 @@ class App extends React.Component {
     .fail(function() {
       alert('error retrieving data');
     });
-    
+
 
     this.handleNeighborhoodChoice = this.handleNeighborhoodChoice.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
     this.getBasedOnNeighborhood = this.getBasedOnNeighborhood.bind(this);
     this.tester = this.tester.bind(this);
+    this.signupUsers = this.signupUsers.bind(this);
+
 
   }
 
@@ -82,6 +85,21 @@ class App extends React.Component {
     });
   }
 
+  signupUsers (userInfo){
+  $.ajax({
+    method: 'POST',
+    url: '/signup',
+    contentType: 'application/json',
+    data: JSON.stringify(userInfo),
+    success: (data) => {
+      console.log('WE HAVE SUCCESSFULLY POSTED DATA');
+    },
+    error: (err) => {
+      console.log("Couldn't post user info ", err);
+    }
+  })
+}
+
   tester (neighborhood) {
     $.get(`/${neighborhood}`, function(data) {
       var obj = {};
@@ -111,7 +129,7 @@ class App extends React.Component {
         return returnObj;
       });
       this.setState({neighborhoodBars: newArr});
-      
+
     }.bind(this))
     .fail(function() {
       alert('error retrieving data');
@@ -125,6 +143,7 @@ class App extends React.Component {
   render () {
     return (
     <div>
+      <Signup signupUsers = {this.signupUsers}/>
       <div className="HeaderDiv">
         <h1 onClick={()=> window.location.reload()}>Buzz</h1>
       </div>

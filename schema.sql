@@ -34,6 +34,12 @@ CREATE TABLE bars_attributes (
   attribute_id INTEGER REFERENCES attributes(id)
 );
 
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR,
+  password VARCHAR
+);
+
 INSERT INTO neighborhoods (name) values ('Tenderloin');
 INSERT INTO neighborhoods (name) values ('SOMA');
 INSERT INTO neighborhoods (name) values ('Hayes Valley');
@@ -75,5 +81,3 @@ INSERT INTO bars_attributes(bar_id, attribute_id) values (2, 7);
 
 INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Jones', '620 Jones St', 1, 1, 13, 15);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (3, 4);
-
-
