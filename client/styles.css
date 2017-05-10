@@ -10,7 +10,7 @@ body {
    background-size:100% 100vh;
    /*padding-top: 5vh;*/
 /*   position: absolute;*/
-  overflow: hidden;
+  overflow: scroll;
 }
 
 li {
@@ -23,19 +23,24 @@ button {
 .HeaderDiv {
   font-family: 'lobster';
   text-align: center;
-  line-height: 15vh;
+  line-height: 8vh;
   font-size: 350%;
-  vertical-align: bottom;
+  vertical-align: top;
   width:30vw;
-  height: 12vh;
+  height: 8vh;
   margin: auto;
   cursor: pointer;
   /*background-color: #A9B7C0;*/
   border-radius: 5px;
 
 }
+
+.BuzzHeader {
+  margin-top: 10%;
+}
 .HoodSelectionDiv {
   margin: auto;
+  margin-top: 5%;
   line-height: 13vh;
   text-align: center;
   width: 50vw;

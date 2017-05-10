@@ -1,21 +1,18 @@
 import React from 'react';
 
-class VibesMatchList extends React.Component {
+class HappyHourList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
-
   }
-
 
   render() {
     return (
       <div className="BarListItem">
-        {console.log('bar: ',this.props.bar)}
+        {console.log('hh', this.props.bar)}
         <h3 className="BarNameHeader">{this.props.bar.name}</h3>
         <p>{this.props.bar.location}</p>
+        <p className="HappyHourHeader">Happy Hour: {this.props.bar.start}-{this.props.bar.end}</p>
         {
           this.props.bar.attributes.map(attribute => <p className="AttributeLabel">{attribute}</p>)
         }
@@ -24,4 +21,5 @@ class VibesMatchList extends React.Component {
   }
 }
 
-export default VibesMatchList;
+
+export default HappyHourList;
