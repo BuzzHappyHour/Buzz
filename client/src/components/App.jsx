@@ -70,18 +70,6 @@ class App extends React.Component {
   }
 
 
-<<<<<<< HEAD
-=======
-
-  getBasedOnNeighborhood (neighborhood) {
-    $.get(`/${neighborhood}`, function(data) {
-      this.setState({neighborhoodBars: data});
-    }.bind(this))
-    .fail(function() {
-      alert('error retrieving data');
-    });
-  }
-
   signupUsers (userInfo){
   $.ajax({
     method: 'POST',
@@ -97,7 +85,6 @@ class App extends React.Component {
   })
 }
 
->>>>>>> master
   tester (neighborhood) {
     $.get(`/${neighborhood}`, function(data) {
       var obj = {};
@@ -184,7 +171,6 @@ class App extends React.Component {
     </div>
     );
   }
-
 
 }
 
