@@ -21,6 +21,8 @@ app.get('/SOMA', (req, res)=>db.getAttributes(req, res, 2));
 app.get('/categories', db.getAllCategories);
 app.get('/attributes', (req, res)=>db.getAttributes(req, res, 2));
 
+
+//if (checkusers === false)
 app.post('/signup', db.postUsers);
 
 
