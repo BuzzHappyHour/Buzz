@@ -9630,6 +9630,15 @@ var App = function (_React$Component) {
     key: 'handleBackButtonClick',
     value: function handleBackButtonClick() {
       console.log('back button clicked');
+      if (this.state.showChoiceOfService === true) {
+        this.setState({ showChoiceOfService: false, showChooseHood: true });
+      }
+      if (this.state.showVibesList === true || this.state.showHappyHourList === true) {
+        this.setState({ showVibesList: false, showHappyHourList: false, showChoiceOfService: true });
+      }
+      if (this.state.showVibesMatchList === true) {
+        this.setState({ showVibesMatchList: false, showVibesList: true });
+      }
     }
   }, {
     key: 'handleChoiceOfService',
