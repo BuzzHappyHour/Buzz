@@ -47,7 +47,6 @@ class App extends React.Component {
     this.handleNeighborhoodChoice = this.handleNeighborhoodChoice.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
-    this.getBasedOnNeighborhood = this.getBasedOnNeighborhood.bind(this);
     this.tester = this.tester.bind(this);
 
   }
@@ -71,16 +70,6 @@ class App extends React.Component {
     console.log('neighborhood bars list:', this.state.neighborhoodBars);
   }
 
-
-
-  getBasedOnNeighborhood (neighborhood) {
-    $.get(`/${neighborhood}`, function(data) {
-      this.setState({neighborhoodBars: data});
-    }.bind(this))
-    .fail(function() {
-      alert('error retrieving data');
-    });
-  }
 
   tester (neighborhood) {
     $.get(`/${neighborhood}`, function(data) {
@@ -136,7 +125,7 @@ class App extends React.Component {
       }
 
       { this.state.showChooseHood ? this.state.neighborhoods.map(hood =>
-         <ListOfHoods neighborhood={hood.name} neighborhoodID={hood.id} getBasedOnNeighborhood={this.getBasedOnNeighborhood} tester={this.tester} handleChoice={this.handleNeighborhoodChoice}/>
+         <ListOfHoods neighborhood={hood.name} neighborhoodID={hood.id} tester={this.tester} handleChoice={this.handleNeighborhoodChoice}/>
        )
        : null }
 

@@ -9603,7 +9603,6 @@ var App = function (_React$Component) {
     _this.handleNeighborhoodChoice = _this.handleNeighborhoodChoice.bind(_this);
     _this.handleChoiceOfService = _this.handleChoiceOfService.bind(_this);
     _this.handleChoiceOfVibes = _this.handleChoiceOfVibes.bind(_this);
-    _this.getBasedOnNeighborhood = _this.getBasedOnNeighborhood.bind(_this);
     _this.tester = _this.tester.bind(_this);
 
     return _this;
@@ -9630,15 +9629,6 @@ var App = function (_React$Component) {
     value: function handleChoiceOfVibes(vibe, vibeid) {
       this.setState({ choiceOfVibe: vibe, showVibesList: false, showVibesMatchList: true, vibeID: vibeid });
       console.log('neighborhood bars list:', this.state.neighborhoodBars);
-    }
-  }, {
-    key: 'getBasedOnNeighborhood',
-    value: function getBasedOnNeighborhood(neighborhood) {
-      _jquery2.default.get('/' + neighborhood, function (data) {
-        this.setState({ neighborhoodBars: data });
-      }.bind(this)).fail(function () {
-        alert('error retrieving data');
-      });
     }
   }, {
     key: 'tester',
@@ -9712,7 +9702,7 @@ var App = function (_React$Component) {
           )
         ),
         this.state.showChooseHood ? this.state.neighborhoods.map(function (hood) {
-          return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood.name, neighborhoodID: hood.id, getBasedOnNeighborhood: _this2.getBasedOnNeighborhood, tester: _this2.tester, handleChoice: _this2.handleNeighborhoodChoice });
+          return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood.name, neighborhoodID: hood.id, tester: _this2.tester, handleChoice: _this2.handleNeighborhoodChoice });
         }) : null,
         this.state.showChoiceOfService ? _react2.default.createElement(_ChoiceOfService2.default, { handleChoiceOfService: this.handleChoiceOfService }) : null,
         this.state.showVibesList ? _react2.default.createElement(_ChoiceOfVibes2.default, { handleChoiceOfVibes: this.handleChoiceOfVibes, categories: this.state.categories }) : null,
