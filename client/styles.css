@@ -6,7 +6,7 @@ body {
    background-color: #C7D8C6;
    background: url(background.jpg);
    background-size: cover;
-   background-repeat: no-repeat;
+   background-repeat: repeat;
    background-size:100% 100vh;
    /*padding-top: 5vh;*/
 /*   position: absolute;*/
@@ -26,7 +26,7 @@ button {
   line-height: 8vh;
   font-size: 350%;
   vertical-align: top;
-  width:30vw;
+  width:50vw;
   height: 8vh;
   margin: auto;
   cursor: pointer;
@@ -43,10 +43,28 @@ button {
   margin-top: 5%;
   line-height: 13vh;
   text-align: center;
-  width: 50vw;
+  justify-content: center;
+  width: 70vw;
   height: 13vh;
   border-radius: 5px;
   background-color: #a291bc;
+}
+
+.BackButton {
+  float: left;
+  width: 10vw;
+  height: 5vh;
+  line-height: 5vh;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.HoodLabel {
+  margin: auto;
+  text-align: center;
+  margin-right: 26vw;
+  width: 20vw;
 }
 
 .HoodNameDiv {
@@ -54,7 +72,7 @@ button {
   line-height: 10vh;
   vertical-align: middle;
   margin:auto;
-  width: 50vw;
+  width: 70vw;
   height: 10vh;
   border-radius: 5px;
   background-color: #73627c;
@@ -76,7 +94,7 @@ button {
 .HappyHourButton {
   font-family: 'COUTUREBold';
   margin: auto;
-  width: 50vw;
+  width: 70vw;
   height: 15vh;
   margin-bottom: 2%;
   font-size: 100%;
@@ -89,7 +107,7 @@ button {
 .VibesButton {
   font-family: 'COUTUREBold';
   margin: auto;
-  width: 50vw;
+  width: 70vw;
   height: 15vh;
   font-size: 100%;
   color: white;
@@ -121,8 +139,8 @@ button {
 
 .BarListItem {
   margin:auto;
-  width: 50vw;
-  height: 20vh;
+  width: 70vw;
+  height: 25vh;
   border-radius: 5px;
   border: 2px solid #6726e0;
   background-color: #73627c;
@@ -142,7 +160,7 @@ button {
 
 .VibeMatchList {
   margin:auto;
-  width: 50vw;
+  width: 70vw;
   height: 20vh;
   border-radius: 5px;
   background-color: #73627c;
@@ -150,7 +168,7 @@ button {
 }
 
 .AttributeLabel {
-  width:12vw;
+  width:15vw;
   height: 4vh;
   white-space: nowrap;
   background-color: #a291bc;
@@ -164,5 +182,6 @@ button {
   display: inline-block;
   box-sizing: content-box;
   overflow: hidden;
+  font-size: 1.5vw;
 
 }

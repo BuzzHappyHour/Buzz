@@ -4,6 +4,7 @@ import ChoiceOfService from './ChoiceOfService';
 import ChoiceOfVibes from './ChoiceOfVibes';
 import HappyHourList from './HappyHourList';
 import Header from './Header';
+import BackButton from './BackButtonWithHoodSelection'
 import NoBarFound from './NoBarFound';
 import VibesMatchList from './VibesMatchList';
 import Signup from './Signup';
@@ -42,10 +43,12 @@ class App extends React.Component {
 
 
     this.handleNeighborhoodChoice = this.handleNeighborhoodChoice.bind(this);
+    this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
     this.tester = this.tester.bind(this);
     this.signupUsers = this.signupUsers.bind(this);
+
 
 
   }
@@ -53,7 +56,18 @@ class App extends React.Component {
   handleNeighborhoodChoice (hood, hoodID) {
     this.setState({neighborhood: hood, showChooseHood: false, showChoiceOfService: true, neighborhoodID: hoodID});
   }
-
+  handleBackButtonClick () {
+    console.log('back button clicked');
+    if(this.state.showChoiceOfService === true) {
+      this.setState({showChoiceOfService: false, showChooseHood: true})
+    }
+    if(this.state.showVibesList === true || this.state.showHappyHourList === true) {
+      this.setState({showVibesList: false, showHappyHourList: false, showChoiceOfService: true})
+    }
+    if(this.state.showVibesMatchList === true) {
+      this.setState({showVibesMatchList: false, showVibesList: true})
+    }
+  }
   handleChoiceOfService (choice) {
     if(choice === 'Vibes') {
       this.setState({choiceOfService: choice, showVibesList: true, showChoiceOfService: false});
@@ -135,7 +149,8 @@ class App extends React.Component {
       {this.state.showChooseHood ?
 
         <div className="HoodSelectionDiv"><h2>Choose a neighborhood</h2></div> :
-          <div className="HoodSelectionDiv"><h2>{this.state.neighborhood}</h2></div>
+          //<div className="HoodSelectionDiv"><h2>{this.state.neighborhood}</h2></div>
+          <BackButton hood={this.state.neighborhood} handleBackButtonClick={this.handleBackButtonClick}/>
 
 
       }
