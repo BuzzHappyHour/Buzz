@@ -6,6 +6,7 @@ import HappyHourList from './HappyHourList';
 import Header from './Header';
 import NoBarFound from './NoBarFound';
 import VibesMatchList from './VibesMatchList';
+import Signup from './Signup';
 import $ from 'jquery';
 
 class App extends React.Component {
@@ -44,6 +45,8 @@ class App extends React.Component {
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
     this.tester = this.tester.bind(this);
+    this.signupUsers = this.signupUsers.bind(this);
+
 
   }
 
@@ -67,6 +70,34 @@ class App extends React.Component {
   }
 
 
+<<<<<<< HEAD
+=======
+
+  getBasedOnNeighborhood (neighborhood) {
+    $.get(`/${neighborhood}`, function(data) {
+      this.setState({neighborhoodBars: data});
+    }.bind(this))
+    .fail(function() {
+      alert('error retrieving data');
+    });
+  }
+
+  signupUsers (userInfo){
+  $.ajax({
+    method: 'POST',
+    url: '/signup',
+    contentType: 'application/json',
+    data: JSON.stringify(userInfo),
+    success: (data) => {
+      console.log('WE HAVE SUCCESSFULLY POSTED DATA');
+    },
+    error: (err) => {
+      console.log("Couldn't post user info ", err);
+    }
+  })
+}
+
+>>>>>>> master
   tester (neighborhood) {
     $.get(`/${neighborhood}`, function(data) {
       var obj = {};
@@ -110,6 +141,7 @@ class App extends React.Component {
   render () {
     return (
     <div>
+      <Signup signupUsers = {this.signupUsers}/>
       <div className="HeaderDiv">
         <h1 className="BuzzHeader" onClick={()=> window.location.reload()}>Buzz</h1>
       </div>

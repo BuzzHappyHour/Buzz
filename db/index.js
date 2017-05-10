@@ -59,7 +59,19 @@ getAllCategories = function(req, res, next) {
     });
 };
 
-
+postUsers = function(req, res, next) {
+  db.none('INSERT INTO users (username, password) VALUES (${username}, ${password})', req.body)
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'inserted user'
+        });
+    })
+    .catch(function (err){
+      return next(err);
+    });
+}
 
 
 
@@ -71,3 +83,4 @@ module.exports.getAllBars = getAllBars;
 module.exports.getNeighborhoodBars = getNeighborhoodBars;
 module.exports.getAllCategories = getAllCategories;
 module.exports.getAttributes = getAttributes;
+module.exports.postUsers = postUsers;
