@@ -59,9 +59,29 @@ getAllCategories = function(req, res, next) {
     });
 };
 
+// postUsers = function(req, res, next) {
+//   if(db.query('SELECT EXIST (SELECT TRUE FROM users WHERE username = ${username})')){
+//     console.log('THIS USER ALREADY EXISTS');
+//   } else {
+//     db.none('INSERT INTO users (username, password) VALUES (${username}, ${password})', req.body)
+//       .then(function () {
+//         res.status(200)
+//           .json({
+//             status: 'success',
+//             message: 'inserted user'
+//           });
+//       })
+//       .catch(function (err){
+//         return next(err);
+//       });
+//     }
+// }
+
 postUsers = function(req, res, next) {
-  db.none('INSERT INTO users (username, password) VALUES (${username}, ${password})', req.body)
+  db.none('INSERT INTO users (username, password) SELECT ${username}, ${password} WHERE NOT EXISTS (SELECT 1 FROM users WHERE username=${username})', req.body)
+
     .then(function () {
+      console.log("i have inserted a user")
       res.status(200)
         .json({
           status: 'success',
