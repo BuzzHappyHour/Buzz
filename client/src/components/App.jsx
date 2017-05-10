@@ -2,8 +2,9 @@ import React from 'react';
 import ListOfHoods from './ListOfHoods.jsx';
 import ChoiceOfService from './ChoiceOfService';
 import ChoiceOfVibes from './ChoiceOfVibes';
-import BarList from './BarList';
+import HappyHourList from './HappyHourList';
 import Header from './Header';
+import NoBarFound from './NoBarFound';
 import VibesMatchList from './VibesMatchList';
 import Signup from './Signup';
 import $ from 'jquery';
@@ -15,7 +16,7 @@ class App extends React.Component {
       neighborhood: '',
       neighborhoodID: '',
       showChooseHood: true,
-      showBarList: false,
+      showHappyHourList: false,
       showVibesList: false,
       showChoiceOfService: false,
       showVibesMatchList: false,
@@ -25,12 +26,7 @@ class App extends React.Component {
       choiceOfVibe: '',
       vibeID: '',
       categories: [],
-      neighborhoodBars: [],
-      bars: [{name: 'stephs', neighborhood: 'SOMA', happyHours: '6-8 m-f', hasHappyHour:true, attributes: ['good music', 'games']},
-      {name: 'tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
-      {name: 'super tenders', neighborhood: 'Tenderloin', happyHours: '4-10 m-th'},
-      {name: 'Equator', neighborhood: 'SOMA', happyHours: '4-10 m-th', hasHappyHour:true, attributes: ['Artsy']}
-      ]
+      neighborhoodBars: []
 
     };
 
@@ -48,7 +44,6 @@ class App extends React.Component {
     this.handleNeighborhoodChoice = this.handleNeighborhoodChoice.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
-    this.getBasedOnNeighborhood = this.getBasedOnNeighborhood.bind(this);
     this.tester = this.tester.bind(this);
     this.signupUsers = this.signupUsers.bind(this);
 
@@ -63,7 +58,7 @@ class App extends React.Component {
     if(choice === 'Vibes') {
       this.setState({choiceOfService: choice, showVibesList: true, showChoiceOfService: false});
     } else {
-      this.setState({choiceOfService: choice, showBarList: true, showChoiceOfService: false});
+      this.setState({choiceOfService: choice, showHappyHourList: true, showChoiceOfService: false});
     }
     console.log('choice is: ' , choice)
     console.log(this.state.neighborhood);
@@ -75,6 +70,8 @@ class App extends React.Component {
   }
 
 
+<<<<<<< HEAD
+=======
 
   getBasedOnNeighborhood (neighborhood) {
     $.get(`/${neighborhood}`, function(data) {
@@ -100,6 +97,7 @@ class App extends React.Component {
   })
 }
 
+>>>>>>> master
   tester (neighborhood) {
     $.get(`/${neighborhood}`, function(data) {
       var obj = {};
@@ -145,17 +143,18 @@ class App extends React.Component {
     <div>
       <Signup signupUsers = {this.signupUsers}/>
       <div className="HeaderDiv">
-        <h1 onClick={()=> window.location.reload()}>Buzz</h1>
+        <h1 className="BuzzHeader" onClick={()=> window.location.reload()}>Buzz</h1>
       </div>
       {this.state.showChooseHood ?
 
         <div className="HoodSelectionDiv"><h2>Choose a neighborhood</h2></div> :
           <div className="HoodSelectionDiv"><h2>{this.state.neighborhood}</h2></div>
 
+
       }
 
       { this.state.showChooseHood ? this.state.neighborhoods.map(hood =>
-         <ListOfHoods neighborhood={hood.name} neighborhoodID={hood.id} getBasedOnNeighborhood={this.getBasedOnNeighborhood} tester={this.tester} handleChoice={this.handleNeighborhoodChoice}/>
+         <ListOfHoods neighborhood={hood.name} neighborhoodID={hood.id} tester={this.tester} handleChoice={this.handleNeighborhoodChoice}/>
        )
        : null }
 
@@ -168,8 +167,8 @@ class App extends React.Component {
        }
 
        {
-         this.state.showBarList ? this.state.bars.map(bar=>
-           bar.neighborhood === this.state.neighborhood ? <BarList bar={bar}/> : null
+         this.state.showHappyHourList ? this.state.neighborhoodBars.map(bar=>
+            <HappyHourList bar={bar}/> : null
 
          ) : null
 
