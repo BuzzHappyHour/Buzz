@@ -21,6 +21,9 @@ app.get('/SOMA', (req, res)=>db.getAttributes(req, res, 2));
 app.get('/categories', db.getAllCategories);
 app.get('/attributes', (req, res)=>db.getAttributes(req, res, 2));
 
+app.post('/signup', db.postUsers);
+
+
 app.listen(port, function() {
   console.log('listening on port ' + port);
 });
