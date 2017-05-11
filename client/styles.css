@@ -185,3 +185,40 @@ button {
   font-size: 1.5vw;
 
 }
+#signup-container {
+    position: fixed;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+#signup-box {
+    width: 500px;
+    height: 260px;
+    background: white;
+    position: absolute;
+    z-index: 100;
+    top: calc(50% - 130px);
+    left: calc(50% - 250px);
+    border-radius: 10px;
+}
+
+#login-container {
+    position: fixed;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+#login-box {
+    width: 500px;
+    height: 260px;
+    background: black;
+    position: absolute;
+    z-index: 100;
+    top: calc(50% - 130px);
+    left: calc(50% - 250px);
+    border-radius: 10px;
+}

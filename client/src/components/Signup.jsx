@@ -14,18 +14,14 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <label>
-            Username:
-            <input type="text" name="username" onChange={(e) => this.setState({ username: e.target.value})}/>
-          </label>
-          <label>
-            Password:
-            <input type="text" name="password" onChange={(e) => this.setState({ password: e.target.value})}/>
-          </label>
-          <input type="submit" value="Submit" onClick={() => this.props.signupUsers(this.state)}/>
-        </form>
+      <div id="signup-container">
+        <div id="signup-box">
+          <div>
+            <input type="text" name="username" placeholder="Enter Username" onChange={(e) => this.setState({ username: e.target.value})}/>
+            <input type="password" name="password" placeholder="Enter Password" onChange={(e) => this.setState({ password: e.target.value})}/>
+            <input type="submit" value="Submit" onClick={() => this.props.signupUsers(this.state)}/>
+          </div>
+        </div>
       </div>
     )
   }

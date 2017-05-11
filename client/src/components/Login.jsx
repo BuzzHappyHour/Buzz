@@ -22,7 +22,7 @@ class Login extends React.Component {
           </label>
           <label>
             Password:
-            <input type="text" name="password" onChange={(e) => this.setState({ password: e.target.value})}/>
+            <input type="password" name="password" onChange={(e) => this.setState({ password: e.target.value})}/>
           </label>
           <input type="submit" value="Submit" onClick={() => this.props.loginUser(this.state)}/>
         </form>
