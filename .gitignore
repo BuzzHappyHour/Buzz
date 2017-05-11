@@ -33,3 +33,4 @@ build/
 npm-debug.log
 .DS_Store
 /*.env
+client/dist/bundle.js
