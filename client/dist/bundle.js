@@ -9700,7 +9700,7 @@ var App = function (_React$Component) {
           console.log('user has successfully logged in from the front end');
         },
         error: function error(err) {
-          console.log('user cannot log in from the front end');
+          console.log('user cannot log in from the front end ', err);
         }
       });
     }

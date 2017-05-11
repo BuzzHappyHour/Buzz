@@ -118,7 +118,7 @@ class App extends React.Component {
         console.log('user has successfully logged in from the front end')
       },
       error: (err) => {
-        console.log('user cannot log in from the front end');
+        console.log('user cannot log in from the front end ', err);
       }
     })
   }
