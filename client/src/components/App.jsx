@@ -8,6 +8,7 @@ import BackButton from './BackButtonWithHoodSelection'
 import NoBarFound from './NoBarFound';
 import VibesMatchList from './VibesMatchList';
 import Signup from './Signup';
+import Login from './Login';
 import $ from 'jquery';
 
 class App extends React.Component {
@@ -27,7 +28,9 @@ class App extends React.Component {
       choiceOfVibe: '',
       vibeID: '',
       categories: [],
-      neighborhoodBars: []
+      neighborhoodBars: [],
+      showSignup: false,
+      showLogin: false
 
     };
 
@@ -48,7 +51,7 @@ class App extends React.Component {
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
     this.tester = this.tester.bind(this);
     this.signupUsers = this.signupUsers.bind(this);
-
+    this.loginUser = this.loginUser.bind(this);
 
 
   }
@@ -83,21 +86,43 @@ class App extends React.Component {
     console.log('neighborhood bars list:', this.state.neighborhoodBars);
   }
 
+  handleSignup () {
+    this.setState({showSignup: !this.state.showSignup});
+  }
+
+  handleLogin () {
+    this.setState({showLogin: !this.state.showLogin});
+  }
+
 
   signupUsers (userInfo){
-  $.ajax({
-    method: 'POST',
-    url: '/signup',
-    contentType: 'application/json',
-    data: JSON.stringify(userInfo),
-    success: (data) => {
-      console.log('WE HAVE SUCCESSFULLY POSTED DATA');
-    },
-    error: (err) => {
-      console.log("Couldn't post user info ", err);
-    }
-  })
-}
+    $.ajax({
+      method: 'POST',
+      url: '/signup',
+      contentType: 'application/json',
+      data: JSON.stringify(userInfo),
+      success: (data) => {
+        console.log('WE HAVE SUCCESSFULLY POSTED DATA');
+      },
+      error: (err) => {
+        console.log("Couldn't post user info ", err);
+      }
+    })
+  }
+
+  loginUser (userInfo) {
+    $.ajax({
+      method: 'GET',
+      url: '/login',
+      success: (data) => {
+        console.log('user has successfully logged in from the front end')
+      },
+      error: (err) => {
+        console.log('user cannot log in from the front end ', err);
+      }
+    })
+  }
+
 
   tester (neighborhood) {
     $.get(`/${neighborhood}`, function(data) {
@@ -142,7 +167,18 @@ class App extends React.Component {
   render () {
     return (
     <div>
-      <Signup signupUsers = {this.signupUsers}/>
+      <button onClick={ () => this.handleSignup() }> Sign up </button>
+      {this.state.showSignup ?
+        <Signup signupUsers = {this.signupUsers}/> :
+        null
+      }
+
+      <button onClick={ () => this.handleLogin() }> Login </button>
+      {this.state.showLogin ?
+        <Login loginUser = {this.loginUser}/> :
+          null
+      }
+
       <div className="HeaderDiv">
         <h1 className="BuzzHeader" onClick={()=> window.location.reload()}>Buzz</h1>
       </div>

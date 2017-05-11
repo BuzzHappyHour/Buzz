@@ -1,13 +1,13 @@
 import React from 'react';
 
-class Signup extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       username: '',
       password: '',
-      clickedLogin: false
+      clickedSignup: false
     }
   }
 
@@ -24,11 +24,11 @@ class Signup extends React.Component {
             Password:
             <input type="text" name="password" onChange={(e) => this.setState({ password: e.target.value})}/>
           </label>
-          <input type="submit" value="Submit" onClick={() => this.props.signupUsers(this.state)}/>
+          <input type="submit" value="Submit" onClick={() => this.props.loginUser(this.state)}/>
         </form>
       </div>
     )
   }
 }
 
-export default Signup;
+export default Login;

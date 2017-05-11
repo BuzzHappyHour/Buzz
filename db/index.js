@@ -6,6 +6,7 @@ var options = {
 
 var pgp = require('pg-promise')(options);
 var connectionString = 'postgres://fizlcsqhnhfnkh:d715b80ade298300b1a14fb79aa80bbb87130bcdd9a5156607b56257536adfb2@ec2-54-83-49-44.compute-1.amazonaws.com:5432/d8gbgdpdgg12db' || 'postgres://localhost:5432/buzz';
+
 var db = pgp(connectionString);
 
 getAllBars = function(req, res, next) {
@@ -75,6 +76,22 @@ postUsers = function(req, res, next) {
     });
 }
 
+checkUser = function(req, res, next) {
+db.query('SELECT * FROM users WHERE username=username AND password=password')
+  .then(function (data) {
+      console.log('login successful');
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'Successfully logged in'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
 
 
 
@@ -85,3 +102,4 @@ module.exports.getNeighborhoodBars = getNeighborhoodBars;
 module.exports.getAllCategories = getAllCategories;
 module.exports.getAttributes = getAttributes;
 module.exports.postUsers = postUsers;
+module.exports.checkUser = checkUser;
