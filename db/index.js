@@ -75,6 +75,22 @@ postUsers = function(req, res, next) {
     });
 }
 
+checkUser = function(req, res, next) {
+  console.log('login successful');
+  db.one('SELECT * FROM users WHERE username=${username} AND password=${password}')
+    .then(function (data) {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'Successfully logged in loser'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
 
 
 
@@ -85,3 +101,4 @@ module.exports.getNeighborhoodBars = getNeighborhoodBars;
 module.exports.getAllCategories = getAllCategories;
 module.exports.getAttributes = getAttributes;
 module.exports.postUsers = postUsers;
+module.exports.checkUser = checkUser;
