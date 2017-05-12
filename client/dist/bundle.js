@@ -33279,29 +33279,23 @@ var Login = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { id: 'login-container' },
         _react2.default.createElement(
-          'form',
-          null,
+          'div',
+          { id: 'login-box' },
           _react2.default.createElement(
-            'label',
+            'div',
             null,
-            'Username:',
-            _react2.default.createElement('input', { type: 'text', name: 'username', onChange: function onChange(e) {
+            _react2.default.createElement('input', { type: 'text', name: 'username', placeholder: 'Enter Username', onChange: function onChange(e) {
                 return _this2.setState({ username: e.target.value });
-              } })
-          ),
-          _react2.default.createElement(
-            'label',
-            null,
-            'Password:',
-            _react2.default.createElement('input', { type: 'password', name: 'password', onChange: function onChange(e) {
+              } }),
+            _react2.default.createElement('input', { type: 'password', name: 'password', placeholder: 'Enter Password', onChange: function onChange(e) {
                 return _this2.setState({ password: e.target.value });
+              } }),
+            _react2.default.createElement('input', { type: 'submit', value: 'Login', onClick: function onClick() {
+                return _this2.props.loginUser(_this2.state);
               } })
-          ),
-          _react2.default.createElement('input', { type: 'submit', value: 'Submit', onClick: function onClick() {
-              return _this2.props.loginUser(_this2.state);
-            } })
+          )
         )
       );
     }
