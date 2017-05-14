@@ -132,7 +132,7 @@ button {
   height: 10vh;
   font-size: 75%;
   color: white;
-  background-color: #a6c4c0;
+  background-color: #73627c;
   border: 0;
   border-radius: 5px;
 }
@@ -196,7 +196,7 @@ button {
 #signup-box {
     width: 500px;
     height: 260px;
-    background: white;
+    background: rgba(0, 0, 0, 0.9);
     position: absolute;
     z-index: 100;
     top: calc(50% - 130px);
@@ -215,10 +215,77 @@ button {
 #login-box {
     width: 500px;
     height: 260px;
-    background: black;
+    background: rgba(0, 0, 0, 0.9);
     position: absolute;
     z-index: 100;
     top: calc(50% - 130px);
     left: calc(50% - 250px);
     border-radius: 10px;
+}
+
+.SignupButton {
+  font-family: 'COUTUREBold';
+  margin: auto;
+  width: 10vw;
+  height: 3vh;
+  font-size: 100%;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.LoginButton {
+  font-family: 'COUTUREBold';
+  margin: auto;
+  width: 10vw;
+  height: 3vh;
+  font-size: 100%;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+
+.Username {
+    margin-left: 20px;
+    padding-right: 325px;
+    background: transparent;
+    border: 2px solid white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    color: white;
+}
+
+.Password {
+    margin-left: 20px;
+    padding-right: 325px;
+    margin-top: 40px;
+    background: transparent;
+    border: 2px solid white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    color: white;
+}
+
+.Submit {
+    font-family: 'COUTUREBold';
+    font-size: 75%;
+    font-weight: 800;
+    width: 75px;
+    height: 35px;
+    background: white;
+    color: black;
+    margin-bottom: 20px;
+    margin-left: 400px;
+    margin-top: 20px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.Label {
+  margin: 3vh;
 }

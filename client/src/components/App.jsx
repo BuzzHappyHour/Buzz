@@ -167,13 +167,13 @@ class App extends React.Component {
   render () {
     return (
     <div>
-      <button onClick={ () => this.handleSignup() }> Sign up </button>
+      <button className="SignupButton" onClick={ () => this.handleSignup() }> Sign up </button>
       {this.state.showSignup ?
         <Signup signupUsers = {this.signupUsers}/> :
         null
       }
 
-      <button onClick={ () => this.handleLogin() }> Login </button>
+      <button className="LoginButton" onClick={ () => this.handleLogin() }> Login </button>
       {this.state.showLogin ?
         <Login loginUser = {this.loginUser}/> :
           null
