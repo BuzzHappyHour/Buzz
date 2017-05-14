@@ -17,9 +17,10 @@ class Login extends React.Component {
       <div id="login-container">
         <div id="login-box">
           <div>
-            <input type="text" name="username" placeholder="Enter Username" onChange={(e) => this.setState({ username: e.target.value})}/>
-            <input type="password" name="password" placeholder="Enter Password"　onChange={(e) => this.setState({ password: e.target.value})}/>
-            <input type="submit" value="Login" onClick={() => this.props.loginUser(this.state)}/>
+            <div className="Label">Login</div>
+            <input type="text" name="username" className="Username" placeholder="Enter Username" onChange={(e) => this.setState({ username: e.target.value})}/>
+            <input type="password" name="password" className="Password" placeholder="Enter Password"　onChange={(e) => this.setState({ password: e.target.value})}/>
+            <input type="submit" className="Submit" value="Login" onClick={() => this.props.loginUser(this.state)}/>
           </div>
         </div>
       </div>

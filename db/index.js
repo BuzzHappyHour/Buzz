@@ -5,7 +5,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://fizlcsqhnhfnkh:d715b80ade298300b1a14fb79aa80bbb87130bcdd9a5156607b56257536adfb2@ec2-54-83-49-44.compute-1.amazonaws.com:5432/d8gbgdpdgg12db' || 'postgres://localhost:5432/buzz';
+var connectionString = 'postgres://ghfqsvnpksqnwj:a0f1906cddc9977e2a58601085c20ea62cd952fe91c1c1da2cf833b42d4479a2@ec2-54-235-72-121.compute-1.amazonaws.com:5432/de590nt70ma92f'|| 'postgres://localhost:5432/buzz';
 
 var db = pgp(connectionString);
 

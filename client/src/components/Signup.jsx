@@ -17,9 +17,10 @@ class Signup extends React.Component {
       <div id="signup-container">
         <div id="signup-box">
           <div>
-            <input type="text" name="username" placeholder="Enter Username" onChange={(e) => this.setState({ username: e.target.value})}/>
-            <input type="password" name="password" placeholder="Enter Password" onChange={(e) => this.setState({ password: e.target.value})}/>
-            <input type="submit" value="Submit" onClick={() => this.props.signupUsers(this.state)}/>
+            <div className="Label">Signup</div>
+            <input type="text" name="username" className="Username" placeholder="Enter Username" onChange={(e) => this.setState({ username: e.target.value})}/>
+            <input type="password" name="password" className="Password" placeholder="Enter Password" onChange={(e) => this.setState({ password: e.target.value})}/>
+            <input type="submit" className="Submit" value="Submit" onClick={() => this.props.signupUsers(this.state)}/>
           </div>
         </div>
       </div>
