@@ -4,7 +4,7 @@ body {
    font-style: normal;
    color: white;
    background-color: #C7D8C6;
-   background: url(background.jpg);
+   background: url(backgroundCompressed.jpg);
    background-size: cover;
    background-repeat: repeat;
    background-size:100% 100vh;
@@ -63,8 +63,9 @@ button {
 .HoodLabel {
   margin: auto;
   text-align: center;
-  margin-right: 26vw;
-  width: 20vw;
+  /*margin-right: 26vw;*/
+  width: 35vw;
+
 }
 
 .HoodNameDiv {
@@ -145,19 +146,31 @@ button {
   border: 2px solid #6726e0;
   background-color: #73627c;
   text-align: center;
-
   overflow: hidden;
   margin-top: 2%;
+}
 
+.now{
+  animation: blinker 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
 }
 .BarNameHeader {
   margin-top: 0.2%;
 }
 .HappyHourHeader {
-
+  margin: auto;
 }
 
+.cont {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
 
+}
 .VibeMatchList {
   margin:auto;
   width: 70vw;
@@ -285,7 +298,10 @@ button {
     padding-top: 10px;
     cursor: pointer;
 }
-
+.xButton {
+  float:right;
+  cursor: pointer;
+}
 .Label {
   margin: 3vh;
 }
