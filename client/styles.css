@@ -298,7 +298,10 @@ button {
     padding-top: 10px;
     cursor: pointer;
 }
-
+.xButton {
+  float:right;
+  cursor: pointer;
+}
 .Label {
   margin: 3vh;
 }

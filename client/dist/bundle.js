@@ -9637,6 +9637,7 @@ var App = function (_React$Component) {
     _this.loginUser = _this.loginUser.bind(_this);
     _this.addUserFave = _this.addUserFave.bind(_this);
     _this.getUserFaves = _this.getUserFaves.bind(_this);
+    _this.handleXClick = _this.handleXClick.bind(_this);
 
     return _this;
   }
@@ -9728,6 +9729,11 @@ var App = function (_React$Component) {
       });
     }
   }, {
+    key: 'handleXClick',
+    value: function handleXClick() {
+      this.setState({ showLogin: false, showSignup: false });
+    }
+  }, {
     key: 'tester',
     value: function tester(neighborhood) {
       _jquery2.default.get('/' + neighborhood, function (data) {
@@ -9813,7 +9819,7 @@ var App = function (_React$Component) {
             } },
           ' Sign up '
         ) : null,
-        this.state.showSignup ? _react2.default.createElement(_Signup2.default, { signupUsers: this.signupUsers }) : null,
+        this.state.showSignup ? _react2.default.createElement(_Signup2.default, { signupUsers: this.signupUsers, handleXClick: this.handleXClick }) : null,
         this.state.showLoginButton ? _react2.default.createElement(
           'button',
           { className: 'LoginButton', onClick: function onClick() {
@@ -9821,7 +9827,7 @@ var App = function (_React$Component) {
             } },
           ' Login '
         ) : null,
-        this.state.showLogin ? _react2.default.createElement(_Login2.default, { loginUser: this.loginUser }) : null,
+        this.state.showLogin ? _react2.default.createElement(_Login2.default, { loginUser: this.loginUser, handleXClick: this.handleXClick }) : null,
         this.state.showWelcomeUser ? _react2.default.createElement(_WelcomeUser2.default, { user: this.state.username, userBars: this.state.favoriteBars }) : null,
         _react2.default.createElement(
           'div',
@@ -33235,7 +33241,14 @@ var Signup = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'Label' },
-              'Signup'
+              'Signup ',
+              _react2.default.createElement(
+                'div',
+                { className: 'xButton', onClick: function onClick() {
+                    return _this2.props.handleXClick();
+                  } },
+                'X'
+              )
             ),
             _react2.default.createElement('input', { type: 'text', name: 'username', className: 'Username', placeholder: 'Enter Username', onChange: function onChange(e) {
                 return _this2.setState({ username: e.target.value });
@@ -33380,7 +33393,14 @@ var Login = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'Label' },
-              'Login'
+              'Login ',
+              _react2.default.createElement(
+                'div',
+                { className: 'xButton', onClick: function onClick() {
+                    return _this2.props.handleXClick();
+                  } },
+                'X'
+              )
             ),
             _react2.default.createElement('input', { type: 'text', name: 'username', className: 'Username', placeholder: 'Enter Username', onChange: function onChange(e) {
                 return _this2.setState({ username: e.target.value });

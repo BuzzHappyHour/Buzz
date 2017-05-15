@@ -39,12 +39,12 @@ class App extends React.Component {
       userID: '',
       loggedIn: false,
       favoriteBars: []
-      
+
 
     };
 
-    
-    
+
+
 
     $.get('/categories', function(data) {
       this.setState({categories: data});
@@ -64,6 +64,7 @@ class App extends React.Component {
     this.loginUser = this.loginUser.bind(this);
     this.addUserFave = this.addUserFave.bind(this);
     this.getUserFaves = this.getUserFaves.bind(this);
+    this.handleXClick = this.handleXClick.bind(this);
 
 
   }
@@ -141,6 +142,9 @@ class App extends React.Component {
     })
   }
 
+  handleXClick () {
+    this.setState({showLogin: false, showSignup: false});
+  }
 
   tester (neighborhood) {
     $.get(`/${neighborhood}`, function(data) {
@@ -186,7 +190,7 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify(userAndBar),
       success: (data) => {
-        console.log('success');        
+        console.log('success');
       },
       error: (err) => {
         console.log('could not add bar choice', err);
@@ -203,7 +207,7 @@ class App extends React.Component {
       success: (data) => {
         this.setState({favoriteBars: data.data})
         console.log('fav bars', this.state.favoriteBars);
-        
+
       },
       error: (err) => {
         console.log("couldn't get user faves", err);
@@ -222,20 +226,20 @@ class App extends React.Component {
       this.state.showSignupButton ? <button className="SignupButton" onClick={ () => this.handleSignup() }> Sign up </button> : null
       }
       {this.state.showSignup ?
-        <Signup signupUsers = {this.signupUsers}/> :
+        <Signup signupUsers = {this.signupUsers} handleXClick={this.handleXClick}/> :
         null
       }
-      
+
       {
         this.state.showLoginButton ? <button className="LoginButton" onClick={ () => this.handleLogin() }> Login </button> : null
       }
-      
+
       {this.state.showLogin ?
-        <Login loginUser = {this.loginUser}/> :
+        <Login loginUser = {this.loginUser} handleXClick={this.handleXClick}/> :
           null
       }
 
-      
+
       {
         this.state.showWelcomeUser ? <WelcomeUser user={this.state.username} userBars={this.state.favoriteBars} /> : null
       }
