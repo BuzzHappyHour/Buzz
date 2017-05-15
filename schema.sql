@@ -270,8 +270,7 @@ INSERT INTO bars_attributes(bar_id, attribute_id) values (55, 4);
 INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Muka', '370 Grove St', 3, 2, 1400, 2000);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (56, 4);
 
-INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Noir Lounge ', '581 Hayes St', 3, 2, 1600, 1900);
-INSERT INTO bars_attributes(bar_id, attribute_id) values (57, 4);
+
 
 
 
