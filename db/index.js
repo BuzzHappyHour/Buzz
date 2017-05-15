@@ -94,7 +94,7 @@ checkUser = function(req, res, next) {
 };
 
 addToUserFavs = function(req, res, next) {
-  db.query('INSERT INTO users_bars values(${userID}, ${barID})', req.body)
+  db.query('INSERT INTO users_bars (bar_id, user_id) SELECT ${userID}, ${barID} WHERE NOT EXISTS (SELECT 1 FROM users_bars WHERE bar_id=${barID} AND user_id=${userID})', req.body)
     .then(function(data) {
       console.log('favorite bar added');
       res.status(200)
