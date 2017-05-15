@@ -35,7 +35,8 @@ class App extends React.Component {
       username: '',
       showWelcomeUser: false,
       showSignupButton: true,
-      showLoginButton: true
+      showLoginButton: true,
+      userID: ''
       
 
     };
@@ -126,7 +127,7 @@ class App extends React.Component {
       data: JSON.stringify(userInfo),
       success: (data) => {
         console.log(data.data[0].username)
-        data.data.length === 1 ? this.setState({showLogin: false, username: data.data[0].username, showWelcomeUser: true, showSignupButton: false, showLoginButton: false}) : alert('failed login');
+        data.data.length === 1 ? this.setState({showLogin: false, userID: data.data[0].id, username: data.data[0].username, showWelcomeUser: true, showSignupButton: false, showLoginButton: false}) : alert('failed login');
         
       },
       error: (err) => {
