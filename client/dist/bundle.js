@@ -9570,6 +9570,10 @@ var _Login = __webpack_require__(89);
 
 var _Login2 = _interopRequireDefault(_Login);
 
+var _WelcomeUser = __webpack_require__(195);
+
+var _WelcomeUser2 = _interopRequireDefault(_WelcomeUser);
+
 var _jquery = __webpack_require__(109);
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -9606,7 +9610,11 @@ var App = function (_React$Component) {
       categories: [],
       neighborhoodBars: [],
       showSignup: false,
-      showLogin: false
+      showLogin: false,
+      username: '',
+      showWelcomeUser: false,
+      showSignupButton: true,
+      showLoginButton: true
 
     };
 
@@ -9677,6 +9685,8 @@ var App = function (_React$Component) {
   }, {
     key: 'signupUsers',
     value: function signupUsers(userInfo) {
+      var _this2 = this;
+
       _jquery2.default.ajax({
         method: 'POST',
         url: '/signup',
@@ -9684,6 +9694,8 @@ var App = function (_React$Component) {
         data: JSON.stringify(userInfo),
         success: function success(data) {
           console.log('WE HAVE SUCCESSFULLY POSTED DATA');
+          _this2.setState({ showSignup: false });
+          _this2.loginUser(userInfo);
         },
         error: function error(err) {
           console.log("Couldn't post user info ", err);
@@ -9693,11 +9705,16 @@ var App = function (_React$Component) {
   }, {
     key: 'loginUser',
     value: function loginUser(userInfo) {
+      var _this3 = this;
+
       _jquery2.default.ajax({
-        method: 'GET',
+        method: 'POST',
         url: '/login',
+        contentType: 'application/json',
+        data: JSON.stringify(userInfo),
         success: function success(data) {
-          console.log('user has successfully logged in from the front end');
+          console.log(data.data[0].username);
+          data.data.length === 1 ? _this3.setState({ showLogin: false, username: data.data[0].username, showWelcomeUser: true, showSignupButton: false, showLoginButton: false }) : alert('failed login');
         },
         error: function error(err) {
           console.log('user cannot log in from the front end ', err);
@@ -9742,27 +9759,28 @@ var App = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
+        this.state.showSignupButton ? _react2.default.createElement(
           'button',
           { className: 'SignupButton', onClick: function onClick() {
-              return _this2.handleSignup();
+              return _this4.handleSignup();
             } },
           ' Sign up '
-        ),
+        ) : null,
         this.state.showSignup ? _react2.default.createElement(_Signup2.default, { signupUsers: this.signupUsers }) : null,
-        _react2.default.createElement(
+        this.state.showLoginButton ? _react2.default.createElement(
           'button',
           { className: 'LoginButton', onClick: function onClick() {
-              return _this2.handleLogin();
+              return _this4.handleLogin();
             } },
           ' Login '
-        ),
+        ) : null,
         this.state.showLogin ? _react2.default.createElement(_Login2.default, { loginUser: this.loginUser }) : null,
+        this.state.showWelcomeUser ? _react2.default.createElement(_WelcomeUser2.default, { user: this.state.username }) : null,
         _react2.default.createElement(
           'div',
           { className: 'HeaderDiv' },
@@ -9786,7 +9804,7 @@ var App = function (_React$Component) {
         //<div className="HoodSelectionDiv"><h2>{this.state.neighborhood}</h2></div>
         _react2.default.createElement(_BackButtonWithHoodSelection2.default, { hood: this.state.neighborhood, handleBackButtonClick: this.handleBackButtonClick }),
         this.state.showChooseHood ? this.state.neighborhoods.map(function (hood) {
-          return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood.name, neighborhoodID: hood.id, tester: _this2.tester, handleChoice: _this2.handleNeighborhoodChoice });
+          return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood.name, neighborhoodID: hood.id, tester: _this4.tester, handleChoice: _this4.handleNeighborhoodChoice });
         }) : null,
         this.state.showChoiceOfService ? _react2.default.createElement(_ChoiceOfService2.default, { handleChoiceOfService: this.handleChoiceOfService }) : null,
         this.state.showVibesList ? _react2.default.createElement(_ChoiceOfVibes2.default, { handleChoiceOfVibes: this.handleChoiceOfVibes, categories: this.state.categories }) : null,
@@ -9794,7 +9812,7 @@ var App = function (_React$Component) {
           return _react2.default.createElement(_HappyHourList2.default, { bar: bar });
         }) : null,
         this.state.showVibesMatchList ? this.state.neighborhoodBars.map(function (bar) {
-          return bar.category === _this2.state.vibeID ? _react2.default.createElement(_VibesMatchList2.default, { bar: bar }) : null;
+          return bar.category === _this4.state.vibeID ? _react2.default.createElement(_VibesMatchList2.default, { bar: bar }) : null;
         }) : null
       );
     }
@@ -33280,6 +33298,60 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var WelcomeUser = function (_React$Component) {
+  _inherits(WelcomeUser, _React$Component);
+
+  function WelcomeUser(props) {
+    _classCallCheck(this, WelcomeUser);
+
+    var _this = _possibleConstructorReturn(this, (WelcomeUser.__proto__ || Object.getPrototypeOf(WelcomeUser)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(WelcomeUser, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'Welcome ',
+        this.props.user
+      );
+    }
+  }]);
+
+  return WelcomeUser;
+}(_react2.default.Component);
+
+exports.default = WelcomeUser;
 
 /***/ })
 /******/ ]);

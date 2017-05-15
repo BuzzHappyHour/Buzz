@@ -5,7 +5,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://ghfqsvnpksqnwj:a0f1906cddc9977e2a58601085c20ea62cd952fe91c1c1da2cf833b42d4479a2@ec2-54-235-72-121.compute-1.amazonaws.com:5432/de590nt70ma92f'|| 'postgres://localhost:5432/buzz';
+var connectionString =  'postgres://ghfqsvnpksqnwj:a0f1906cddc9977e2a58601085c20ea62cd952fe91c1c1da2cf833b42d4479a2@ec2-54-235-72-121.compute-1.amazonaws.com:5432/de590nt70ma92f' || 'postgres://localhost:5432/buzz';
 
 var db = pgp(connectionString);
 
@@ -64,33 +64,34 @@ postUsers = function(req, res, next) {
   db.none('INSERT INTO users (username, password) SELECT ${username}, ${password} WHERE NOT EXISTS (SELECT 1 FROM users WHERE username=${username})', req.body)
 
     .then(function () {
-      console.log("i have inserted a user")
+      console.log('i have inserted a user');
       res.status(200)
         .json({
           status: 'success',
           message: 'inserted user'
         });
     })
-    .catch(function (err){
+    .catch(function (err) {
       return next(err);
     });
-}
+};
 
 checkUser = function(req, res, next) {
-db.query('SELECT * FROM users WHERE username=username AND password=password')
+  console.log(req.body);
+  db.query('SELECT * FROM users WHERE username=${username} AND password=${password}', req.body)
   .then(function (data) {
-      console.log('login successful');
-      res.status(200)
+    console.log('login successful');
+    res.status(200)
         .json({
           status: 'success',
           data: data,
           message: 'Successfully logged in'
         });
-    })
+  })
     .catch(function (err) {
       return next(err);
     });
-}
+};
 
 
 

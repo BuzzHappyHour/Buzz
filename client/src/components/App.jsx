@@ -9,6 +9,7 @@ import NoBarFound from './NoBarFound';
 import VibesMatchList from './VibesMatchList';
 import Signup from './Signup';
 import Login from './Login';
+import WelcomeUser from './WelcomeUser'
 import $ from 'jquery';
 
 class App extends React.Component {
@@ -30,7 +31,12 @@ class App extends React.Component {
       categories: [],
       neighborhoodBars: [],
       showSignup: false,
-      showLogin: false
+      showLogin: false,
+      username: '',
+      showWelcomeUser: false,
+      showSignupButton: true,
+      showLoginButton: true
+      
 
     };
 
@@ -103,6 +109,8 @@ class App extends React.Component {
       data: JSON.stringify(userInfo),
       success: (data) => {
         console.log('WE HAVE SUCCESSFULLY POSTED DATA');
+        this.setState({showSignup: false})
+        this.loginUser(userInfo);
       },
       error: (err) => {
         console.log("Couldn't post user info ", err);
@@ -112,10 +120,14 @@ class App extends React.Component {
 
   loginUser (userInfo) {
     $.ajax({
-      method: 'GET',
+      method: 'POST',
       url: '/login',
+      contentType: 'application/json',
+      data: JSON.stringify(userInfo),
       success: (data) => {
-        console.log('user has successfully logged in from the front end')
+        console.log(data.data[0].username)
+        data.data.length === 1 ? this.setState({showLogin: false, username: data.data[0].username, showWelcomeUser: true, showSignupButton: false, showLoginButton: false}) : alert('failed login');
+        
       },
       error: (err) => {
         console.log('user cannot log in from the front end ', err);
@@ -167,16 +179,26 @@ class App extends React.Component {
   render () {
     return (
     <div>
-      <button className="SignupButton" onClick={ () => this.handleSignup() }> Sign up </button>
+      {
+      this.state.showSignupButton ? <button className="SignupButton" onClick={ () => this.handleSignup() }> Sign up </button> : null
+      }
       {this.state.showSignup ?
         <Signup signupUsers = {this.signupUsers}/> :
         null
       }
-
-      <button className="LoginButton" onClick={ () => this.handleLogin() }> Login </button>
+      
+      {
+        this.state.showLoginButton ? <button className="LoginButton" onClick={ () => this.handleLogin() }> Login </button> : null
+      }
+      
       {this.state.showLogin ?
         <Login loginUser = {this.loginUser}/> :
           null
+      }
+
+      
+      {
+        this.state.showWelcomeUser ? <WelcomeUser user={this.state.username} /> : null
       }
 
       <div className="HeaderDiv">
