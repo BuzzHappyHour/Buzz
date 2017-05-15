@@ -33,6 +33,7 @@ getNeighborhoodBars = function(req, res, neighborhood) {
 //       res.status(200).send(data);
 //     });
 // };
+//
 
 getAttributes = function(req, res, id) {
   db.query(`SELECT attributes.attribute, bars.category, bars.id, bars.location, bars.hhstart, bars.hhend, bars.name FROM attributes INNER JOIN bars_attributes ON attributes.id = bars_attributes.attribute_id INNER JOIN bars ON bars.id = bars_attributes.bar_id AND bars.neighborhood = ${id}`)

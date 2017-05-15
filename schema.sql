@@ -60,7 +60,7 @@ INSERT INTO attributes (attribute) values ('No minimum tab');
 INSERT INTO attributes (attribute) values ('smoking');
 INSERT INTO attributes (attribute) values ('Fried Chicken');
 INSERT INTO attributes (attribute) values ('wifi');
-INSERT INTO attributes (attribute) values ('hot people');
+INSERT INTO attributes (attribute) values ('nice people');
 INSERT INTO attributes (attribute) values ('good music');
 INSERT INTO attributes (attribute) values ('Live Band');
 INSERT INTO attributes (attribute) values ('Retirment Home');
@@ -77,16 +77,16 @@ INSERT INTO categories (category) values ('Sporty');
 
 
 
-INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Atlas Tap Room', '606 Mission Street', 2, 3, 15, 17);
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Atlas Tap Room', '606 Mission Street', 2, 3, 1500, 1700);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (1, 15);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (1, 11);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (1, 7);
 
-INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Anchor & Hope', '83 Minna St', 2, 2, 14, 16);
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Anchor & Hope', '83 Minna St', 2, 2, 1400, 1600);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (2, 16);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (2, 7);
 
-INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Jones', '620 Jones St', 1, 1, 13, 15);
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Jones', '620 Jones St', 1, 1, 1300, 1500);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (3, 4);
 
 INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Black Cat', '400 Eddy St', 1, 4, 1730, 1930);
@@ -247,6 +247,31 @@ INSERT INTO bars_attributes(bar_id, attribute_id) values (49, 6);
 
 INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Rickhouse', '246 Kearny St', 4, 3, 0000, 0000);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (50, 12);
+
+
+
+
+
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Blackbird Bar', '2124 Market St', 3, 4, 1700, 2000);
+INSERT INTO bars_attributes(bar_id, attribute_id) values (51, 5);
+
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Boxing Room', '399 Grove St', 3, 3, 1500, 1800);
+INSERT INTO bars_attributes(bar_id, attribute_id) values (52, 13);
+
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Brass Tacks', '488 A Hayes St', 3, 2, 0000, 0000);
+INSERT INTO bars_attributes(bar_id, attribute_id) values (53, 13);
+
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Dobbs Bar', '406 Hayes St ', 3, 6, 1400, 2000);
+INSERT INTO bars_attributes(bar_id, attribute_id) values (54, 7);
+
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Minas Brazilian Restaurant & Cachaçaria ', '41 Franklin St', 3, 6, 1500, 1700);
+INSERT INTO bars_attributes(bar_id, attribute_id) values (55, 4);
+
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Muka', '370 Grove St', 3, 2, 1400, 2000);
+INSERT INTO bars_attributes(bar_id, attribute_id) values (56, 4);
+
+INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Noir Lounge ', '581 Hayes St', 3, 2, 1600, 1900);
+INSERT INTO bars_attributes(bar_id, attribute_id) values (57, 4);
 
 
 
