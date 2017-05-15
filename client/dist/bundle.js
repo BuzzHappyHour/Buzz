@@ -9615,7 +9615,9 @@ var App = function (_React$Component) {
       showWelcomeUser: false,
       showSignupButton: true,
       showLoginButton: true,
-      userID: ''
+      userID: '',
+      loggedIn: false,
+      favoriteBars: []
 
     };
 
@@ -9633,6 +9635,8 @@ var App = function (_React$Component) {
     _this.tester = _this.tester.bind(_this);
     _this.signupUsers = _this.signupUsers.bind(_this);
     _this.loginUser = _this.loginUser.bind(_this);
+    _this.addUserFave = _this.addUserFave.bind(_this);
+    _this.getUserFaves = _this.getUserFaves.bind(_this);
 
     return _this;
   }
@@ -9715,7 +9719,8 @@ var App = function (_React$Component) {
         data: JSON.stringify(userInfo),
         success: function success(data) {
           console.log(data.data[0].username);
-          data.data.length === 1 ? _this3.setState({ showLogin: false, userID: data.data[0].id, username: data.data[0].username, showWelcomeUser: true, showSignupButton: false, showLoginButton: false }) : alert('failed login');
+          data.data.length === 1 ? _this3.setState({ loggedIn: true, showLogin: false, userID: data.data[0].id, username: data.data[0].username, showWelcomeUser: true, showSignupButton: false, showLoginButton: false }) : alert('failed login');
+          _this3.state.loggedIn ? _this3.getUserFaves() : null;
         },
         error: function error(err) {
           console.log('user cannot log in from the front end ', err);
@@ -9747,6 +9752,7 @@ var App = function (_React$Component) {
                 returnObj.start = item2.hhstart;
                 returnObj.end = item2.hhend;
                 returnObj.category = item2.category;
+                returnObj.id = item2.id;
               }
             }
           });
@@ -9758,9 +9764,44 @@ var App = function (_React$Component) {
       });
     }
   }, {
+    key: 'addUserFave',
+    value: function addUserFave(userAndBar) {
+      _jquery2.default.ajax({
+        method: 'POST',
+        url: '/adduserfave',
+        contentType: 'application/json',
+        data: JSON.stringify(userAndBar),
+        success: function success(data) {
+          console.log('success');
+        },
+        error: function error(err) {
+          console.log('could not add bar choice', err);
+        }
+      });
+    }
+  }, {
+    key: 'getUserFaves',
+    value: function getUserFaves() {
+      var _this4 = this;
+
+      _jquery2.default.ajax({
+        method: 'POST',
+        url: '/getuserfaves',
+        contentType: 'application/json',
+        data: JSON.stringify({ userID: this.state.userID }),
+        success: function success(data) {
+          _this4.setState({ favoriteBars: data.data });
+          console.log('fav bars', _this4.state.favoriteBars);
+        },
+        error: function error(err) {
+          console.log("couldn't get user faves", err);
+        }
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       return _react2.default.createElement(
         'div',
@@ -9768,7 +9809,7 @@ var App = function (_React$Component) {
         this.state.showSignupButton ? _react2.default.createElement(
           'button',
           { className: 'SignupButton', onClick: function onClick() {
-              return _this4.handleSignup();
+              return _this5.handleSignup();
             } },
           ' Sign up '
         ) : null,
@@ -9776,12 +9817,12 @@ var App = function (_React$Component) {
         this.state.showLoginButton ? _react2.default.createElement(
           'button',
           { className: 'LoginButton', onClick: function onClick() {
-              return _this4.handleLogin();
+              return _this5.handleLogin();
             } },
           ' Login '
         ) : null,
         this.state.showLogin ? _react2.default.createElement(_Login2.default, { loginUser: this.loginUser }) : null,
-        this.state.showWelcomeUser ? _react2.default.createElement(_WelcomeUser2.default, { user: this.state.username }) : null,
+        this.state.showWelcomeUser ? _react2.default.createElement(_WelcomeUser2.default, { user: this.state.username, userBars: this.state.favoriteBars }) : null,
         _react2.default.createElement(
           'div',
           { className: 'HeaderDiv' },
@@ -9805,15 +9846,15 @@ var App = function (_React$Component) {
         //<div className="HoodSelectionDiv"><h2>{this.state.neighborhood}</h2></div>
         _react2.default.createElement(_BackButtonWithHoodSelection2.default, { hood: this.state.neighborhood, handleBackButtonClick: this.handleBackButtonClick }),
         this.state.showChooseHood ? this.state.neighborhoods.map(function (hood) {
-          return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood.name, neighborhoodID: hood.id, tester: _this4.tester, handleChoice: _this4.handleNeighborhoodChoice });
+          return _react2.default.createElement(_ListOfHoods2.default, { neighborhood: hood.name, neighborhoodID: hood.id, tester: _this5.tester, handleChoice: _this5.handleNeighborhoodChoice });
         }) : null,
         this.state.showChoiceOfService ? _react2.default.createElement(_ChoiceOfService2.default, { handleChoiceOfService: this.handleChoiceOfService }) : null,
         this.state.showVibesList ? _react2.default.createElement(_ChoiceOfVibes2.default, { handleChoiceOfVibes: this.handleChoiceOfVibes, categories: this.state.categories }) : null,
         this.state.showHappyHourList ? this.state.neighborhoodBars.map(function (bar) {
-          return _react2.default.createElement(_HappyHourList2.default, { bar: bar });
+          return _react2.default.createElement(_HappyHourList2.default, { bar: bar, userID: _this5.state.userID, addUserFave: _this5.addUserFave });
         }) : null,
         this.state.showVibesMatchList ? this.state.neighborhoodBars.map(function (bar) {
-          return bar.category === _this4.state.vibeID ? _react2.default.createElement(_VibesMatchList2.default, { bar: bar }) : null;
+          return bar.category === _this5.state.vibeID ? _react2.default.createElement(_VibesMatchList2.default, { bar: bar, userID: _this5.state.userID, addUserFave: _this5.addUserFave }) : null;
         }) : null
       );
     }
@@ -10094,13 +10135,17 @@ var HappyHourList = function (_React$Component) {
   _createClass(HappyHourList, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'BarListItem' },
         console.log('hh', this.props.bar),
         _react2.default.createElement(
           'h3',
-          { className: 'BarNameHeader' },
+          { className: 'BarNameHeader', onClick: function onClick(e) {
+              return _this2.props.userID !== '' ? _this2.props.addUserFave({ userID: _this2.props.userID, barID: _this2.props.bar.id }) : null;
+            } },
           this.props.bar.name
         ),
         _react2.default.createElement(
@@ -10534,13 +10579,17 @@ var VibesMatchList = function (_React$Component) {
   _createClass(VibesMatchList, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'BarListItem' },
         console.log('bar: ', this.props.bar),
         _react2.default.createElement(
           'h3',
-          { className: 'BarNameHeader' },
+          { className: 'BarNameHeader', onClick: function onClick(e) {
+              return _this2.props.userID !== '' ? _this2.props.addUserFave({ userID: _this2.props.userID, barID: _this2.props.bar.id }) : null;
+            } },
           this.props.bar.name
         ),
         _react2.default.createElement(
@@ -10597,18 +10646,40 @@ var WelcomeUser = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (WelcomeUser.__proto__ || Object.getPrototypeOf(WelcomeUser)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      showFaves: false
+    };
     return _this;
   }
 
   _createClass(WelcomeUser, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         null,
-        'Welcome ',
-        this.props.user
+        _react2.default.createElement(
+          'div',
+          null,
+          'Welcome ',
+          this.props.user
+        ),
+        _react2.default.createElement(
+          'div',
+          { onClick: function onClick(e) {
+              return _this2.setState({ showFaves: !_this2.state.showFaves });
+            } },
+          'Show Favorite Bars'
+        ),
+        this.state.showFaves ? this.props.userBars.map(function (bar) {
+          return _react2.default.createElement(
+            'p',
+            null,
+            bar.name
+          );
+        }) : null
       );
     }
   }]);
