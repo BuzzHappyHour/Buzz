@@ -36,12 +36,15 @@ class App extends React.Component {
       showWelcomeUser: false,
       showSignupButton: true,
       showLoginButton: true,
-      userID: ''
+      userID: '',
+      loggedIn: false,
+      favoriteBars: []
       
 
     };
 
-
+    
+    
 
     $.get('/categories', function(data) {
       this.setState({categories: data});
@@ -59,6 +62,8 @@ class App extends React.Component {
     this.tester = this.tester.bind(this);
     this.signupUsers = this.signupUsers.bind(this);
     this.loginUser = this.loginUser.bind(this);
+    this.addUserFave = this.addUserFave.bind(this);
+    this.getUserFaves = this.getUserFaves.bind(this);
 
 
   }
@@ -127,8 +132,8 @@ class App extends React.Component {
       data: JSON.stringify(userInfo),
       success: (data) => {
         console.log(data.data[0].username)
-        data.data.length === 1 ? this.setState({showLogin: false, userID: data.data[0].id, username: data.data[0].username, showWelcomeUser: true, showSignupButton: false, showLoginButton: false}) : alert('failed login');
-        
+        data.data.length === 1 ? this.setState({loggedIn: true, showLogin: false, userID: data.data[0].id, username: data.data[0].username, showWelcomeUser: true, showSignupButton: false, showLoginButton: false}) : alert('failed login');
+        this.state.loggedIn ? this.getUserFaves() : null
       },
       error: (err) => {
         console.log('user cannot log in from the front end ', err);
@@ -160,6 +165,7 @@ class App extends React.Component {
               returnObj.start = item2.hhstart;
               returnObj.end = item2.hhend;
               returnObj.category = item2.category;
+              returnObj.id = item2.id;
             }
           }
         });
@@ -171,6 +177,38 @@ class App extends React.Component {
     .fail(function() {
       alert('error retrieving data');
     });
+  }
+
+  addUserFave(userAndBar) {
+    $.ajax({
+      method: 'POST',
+      url: '/adduserfave',
+      contentType: 'application/json',
+      data: JSON.stringify(userAndBar),
+      success: (data) => {
+        console.log('success');        
+      },
+      error: (err) => {
+        console.log('could not add bar choice', err);
+      }
+    })
+  };
+
+  getUserFaves() {
+    $.ajax({
+      method: 'POST',
+      url: '/getuserfaves',
+      contentType: 'application/json',
+      data: JSON.stringify({userID: this.state.userID}),
+      success: (data) => {
+        this.setState({favoriteBars: data.data})
+        console.log('fav bars', this.state.favoriteBars);
+        
+      },
+      error: (err) => {
+        console.log("couldn't get user faves", err);
+      }
+    })
   }
 
 
@@ -199,7 +237,7 @@ class App extends React.Component {
 
       
       {
-        this.state.showWelcomeUser ? <WelcomeUser user={this.state.username} /> : null
+        this.state.showWelcomeUser ? <WelcomeUser user={this.state.username} userBars={this.state.favoriteBars} /> : null
       }
 
       <div className="HeaderDiv">
@@ -229,14 +267,14 @@ class App extends React.Component {
 
        {
          this.state.showHappyHourList ? this.state.neighborhoodBars.map(bar=>
-            <HappyHourList bar={bar}/> : null
+            <HappyHourList bar={bar} userID={this.state.userID} addUserFave={this.addUserFave}/> : null
 
          ) : null
 
        }
        {
          this.state.showVibesMatchList ? this.state.neighborhoodBars.map(bar=>
-           bar.category === this.state.vibeID ? <VibesMatchList bar={bar} /> : null
+           bar.category === this.state.vibeID ? <VibesMatchList bar={bar} userID={this.state.userID} addUserFave={this.addUserFave}/> : null
          ) : null
        }
 

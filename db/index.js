@@ -5,7 +5,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString =  'postgres://ghfqsvnpksqnwj:a0f1906cddc9977e2a58601085c20ea62cd952fe91c1c1da2cf833b42d4479a2@ec2-54-235-72-121.compute-1.amazonaws.com:5432/de590nt70ma92f' || 'postgres://localhost:5432/buzz';
+var connectionString =  'postgres://localhost:5432/buzz' || 'postgres://ghfqsvnpksqnwj:a0f1906cddc9977e2a58601085c20ea62cd952fe91c1c1da2cf833b42d4479a2@ec2-54-235-72-121.compute-1.amazonaws.com:5432/de590nt70ma92f';
 
 var db = pgp(connectionString);
 
@@ -35,7 +35,7 @@ getNeighborhoodBars = function(req, res, neighborhood) {
 // };
 
 getAttributes = function(req, res, id) {
-  db.query(`SELECT attributes.attribute, bars.category, bars.location, bars.hhstart, bars.hhend, bars.name FROM attributes INNER JOIN bars_attributes ON attributes.id = bars_attributes.attribute_id INNER JOIN bars ON bars.id = bars_attributes.bar_id AND bars.neighborhood = ${id}`)
+  db.query(`SELECT attributes.attribute, bars.category, bars.id, bars.location, bars.hhstart, bars.hhend, bars.name FROM attributes INNER JOIN bars_attributes ON attributes.id = bars_attributes.attribute_id INNER JOIN bars ON bars.id = bars_attributes.bar_id AND bars.neighborhood = ${id}`)
     .then(function(data) {
       res.status(200).send(data);
     });
@@ -93,6 +93,37 @@ checkUser = function(req, res, next) {
     });
 };
 
+addToUserFavs = function(req, res, next) {
+  db.query('INSERT INTO users_bars values(${userID}, ${barID})', req.body)
+    .then(function(data) {
+      console.log('favorite bar added');
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Successfully logged in'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+};
+
+getUserFaves = function(req, res, next) {
+  db.query('SELECT bars.name FROM bars INNER JOIN users_bars ON bars.id = users_bars.bar_id INNER JOIN users ON users.id = users_bars.user_id AND users.id = ${userID}', req.body)
+    .then(function(data) {
+      console.log('got users favorite bars');
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'Got favorite bars'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+};
+
 
 
 
@@ -104,3 +135,5 @@ module.exports.getAllCategories = getAllCategories;
 module.exports.getAttributes = getAttributes;
 module.exports.postUsers = postUsers;
 module.exports.checkUser = checkUser;
+module.exports.addToUserFavs = addToUserFavs;
+module.exports.getUserFaves = getUserFaves;

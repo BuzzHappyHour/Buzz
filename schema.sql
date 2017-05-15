@@ -40,6 +40,11 @@ CREATE TABLE users (
   password VARCHAR
 );
 
+CREATE TABLE users_bars (
+  user_id INTEGER REFERENCES users(id),
+  bar_id INTEGER REFERENCES bars(id)
+);
+
 INSERT INTO neighborhoods (name) values ('Tenderloin');
 INSERT INTO neighborhoods (name) values ('SOMA');
 INSERT INTO neighborhoods (name) values ('Hayes Valley');
