@@ -22,7 +22,7 @@ app.get('/categories', db.getAllCategories);
 app.get('/attributes', (req, res)=>db.getAttributes(req, res, 2));
 
 app.post('/signup', db.postUsers);
-app.get('/login', db.checkUser);
+app.post('/login', db.checkUser);
 
 app.listen(port, function() {
   console.log('listening on port ' + port);
