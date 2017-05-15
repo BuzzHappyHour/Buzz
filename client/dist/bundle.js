@@ -9602,7 +9602,7 @@ var App = function (_React$Component) {
       showVibesList: false,
       showChoiceOfService: false,
       showVibesMatchList: false,
-      neighborhoods: [{ name: 'SOMA', id: 2 }, { name: 'Tenderloin', id: 1 }],
+      neighborhoods: [{ name: 'SOMA', id: 2 }, { name: 'Tenderloin', id: 1 }, { name: 'Hayes Valley', id: 3 }, { name: 'Union Square/FiDi', id: 4 }],
       happyHourOrAtts: '',
       choiceOfService: '',
       choiceOfVibe: '',

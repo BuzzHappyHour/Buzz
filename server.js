@@ -20,6 +20,8 @@ app.get('/Tenderloin', (req, res)=>db.getAttributes(req, res, 1));
 app.get('/SOMA', (req, res)=>db.getAttributes(req, res, 2));
 app.get('/categories', db.getAllCategories);
 app.get('/attributes', (req, res)=>db.getAttributes(req, res, 2));
+app.get('/Hayes%20Valley', (req, res) => db.getAttributes(req, res, 3));
+app.get('/Union%20Square/FiDi', (req, res) => db.getAttributes(req, res, 4));
 
 app.post('/signup', db.postUsers);
 app.post('/login', db.checkUser);
