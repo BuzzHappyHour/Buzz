@@ -60,7 +60,7 @@ class HappyHourList extends React.Component {
 
       <div className="BarListItem">
 
-        <h3 className="BarNameHeader">{this.props.bar.name}</h3>
+        <h3 className="BarNameHeader" onClick={(e) => this.props.userID !== '' ? this.props.addUserFave({userID: this.props.userID, barID: this.props.bar.id}) : null}>{this.props.bar.name}</h3>
         <p>{this.props.bar.location}</p>
         <div className="cont">
         <p className="HappyHourHeader">Happy Hour: {happyHourTimes}</p>
