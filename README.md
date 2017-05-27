@@ -23,7 +23,7 @@
 
 ## Usage
 
-> Some usage instructions
+> Go to http://buzzhappyhour.herokuapp.com/
 
 ## Requirements
 
