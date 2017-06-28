@@ -18,7 +18,6 @@
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
-1. [Roadmap](#roadmap)
 1. [Contributing](#contributing)
 
 ## Usage
@@ -28,7 +27,6 @@
 ## Requirements
 
 - Node 6.4.x
-- Redis 2.6.x
 - Postgresql 9.1.x
 
 ## Development
@@ -38,15 +36,10 @@
 From within the root directory:
 
 ```sh
-npm install -g bower
+
 npm install
-bower install
+
 ```
-
-### Roadmap
-
-View the project roadmap [https://docs.google.com/spreadsheets/d/1rOMSv3x9rNohUySJ3088o3I2-vh6lUV7OzJO27Ecd6k/](LINK_TO_DOC)
-
 
 ## Contributing
 
