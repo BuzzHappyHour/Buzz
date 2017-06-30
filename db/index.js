@@ -1,11 +1,14 @@
 var promise = require('bluebird');
+var bcrypt = require('bcrypt');
+
 
 var options = {
   promiseLib: promise
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://ghfqsvnpksqnwj:a0f1906cddc9977e2a58601085c20ea62cd952fe91c1c1da2cf833b42d4479a2@ec2-54-235-72-121.compute-1.amazonaws.com:5432/de590nt70ma92f' || 'postgres://localhost:5432/buzz';
+// var connectionString = 'postgres://ghfqsvnpksqnwj:a0f1906cddc9977e2a58601085c20ea62cd952fe91c1c1da2cf833b42d4479a2@ec2-54-235-72-121.compute-1.amazonaws.com:5432/de590nt70ma92f' || 'postgres://localhost:5432/buzz';
+var connectionString = 'postgres://localhost:5432/buzz';
 
 var db = pgp(connectionString);
 
@@ -61,18 +64,22 @@ getAllCategories = function(req, res, next) {
 };
 
 postUsers = function(req, res, next) {
-  db.none('INSERT INTO users (username, password) SELECT ${username}, ${password} WHERE NOT EXISTS (SELECT 1 FROM users WHERE username=${username})', req.body)
+  console.log('this is req.body: ', req.body)
 
-    .then(function () {
-      console.log('i have inserted a user');
-      res.status(200)
-        .json({
-          status: 'success',
-          message: 'inserted user'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
+  bcrypt.hash(req.body.password, 10, function(err, hash) {
+    // db.none('INSERT INTO users (username, password) SELECT ${username}, ${password} WHERE NOT EXISTS (SELECT 1 FROM users WHERE username=${username})', req.body)
+    db.none('INSERT INTO users(username, password) VALUES ($1, $2)', [req.body.username, hash])
+      .then(function () {
+        console.log('i have inserted a user');
+        res.status(200)
+          .json({
+            status: 'success',
+            message: 'inserted user'
+          });
+      })
+      .catch(function (err) {
+        return next(err);
+      });
     });
 };
 
