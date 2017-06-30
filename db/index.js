@@ -64,23 +64,36 @@ getAllCategories = function(req, res, next) {
 };
 
 postUsers = function(req, res, next) {
-  console.log('this is req.body: ', req.body)
+  // console.log('this is req.body: ', req.body)
 
-  bcrypt.hash(req.body.password, 10, function(err, hash) {
-    // db.none('INSERT INTO users (username, password) SELECT ${username}, ${password} WHERE NOT EXISTS (SELECT 1 FROM users WHERE username=${username})', req.body)
-    db.none('INSERT INTO users(username, password) VALUES ($1, $2)', [req.body.username, hash])
-      .then(function () {
-        console.log('i have inserted a user');
-        res.status(200)
-          .json({
-            status: 'success',
-            message: 'inserted user'
+  db.any('SELECT * FROM users WHERE username = $1', [req.body.username])
+      .then(function(data) {
+        console.log('this is the data inside db.any: ', data);
+        if(data.length === 0){
+          bcrypt.hash(req.body.password, 10, function(err, hash) {
+            // db.none('INSERT INTO users (username, password) SELECT ${username}, ${password} WHERE NOT EXISTS (SELECT 1 FROM users WHERE username=${username})', req.body)
+            db.none('INSERT INTO users(username, password) VALUES ($1, $2)', [req.body.username, hash])
+              .then(function () {
+                console.log('i have inserted a user');
+                res.status(200)
+                  .json({
+                    status: 'success',
+                    message: 'inserted user'
+                  });
+              })
+              .catch(function (err) {
+                return next(err);
+              });
           });
+        } else {
+          res.status(400)
+          res.send('This username has been taken')
+        }
       })
-      .catch(function (err) {
+      .catch(function(error) {
         return next(err);
       });
-    });
+
 };
 
 checkUser = function(req, res, next) {
@@ -89,11 +102,11 @@ checkUser = function(req, res, next) {
   .then(function (data) {
     console.log('login successful');
     res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Successfully logged in'
-        });
+      .json({
+        status: 'success',
+        data: data,
+        message: 'Successfully logged in'
+      });
   })
     .catch(function (err) {
       return next(err);
