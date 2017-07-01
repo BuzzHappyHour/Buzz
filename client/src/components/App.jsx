@@ -38,8 +38,8 @@ class App extends React.Component {
       showLoginButton: true,
       userID: '',
       loggedIn: false,
-      favoriteBars: []
-
+      favoriteBars: [],
+      loginErrors: null
 
     };
 
@@ -59,14 +59,12 @@ class App extends React.Component {
     this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     this.handleChoiceOfService = this.handleChoiceOfService.bind(this);
     this.handleChoiceOfVibes = this.handleChoiceOfVibes.bind(this);
-    this.tester = this.tester.bind(this);
+    this.getNeighborhood = this.getNeighborhood.bind(this);
     this.signupUsers = this.signupUsers.bind(this);
     this.loginUser = this.loginUser.bind(this);
     this.addUserFave = this.addUserFave.bind(this);
     this.getUserFaves = this.getUserFaves.bind(this);
     this.handleXClick = this.handleXClick.bind(this);
-
-
   }
 
   handleNeighborhoodChoice (hood, hoodID) {
@@ -132,27 +130,31 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify(userInfo),
       success: (data) => {
+        console.log('this is the data inside loginUser: ', data);
         console.log(data.data[0].username)
         data.data.length === 1 ? this.setState({loggedIn: true, showLogin: false, userID: data.data[0].id, username: data.data[0].username, showWelcomeUser: true, showSignupButton: false, showLoginButton: false}) : alert('failed login');
         this.state.loggedIn ? this.getUserFaves() : null
       },
       error: (err) => {
         console.log('user cannot log in from the front end ', err);
+        console.log('this is this.state.loginErrors inside the AJAX: ', this.state.loginErrors);
+        this.setState({
+          loginErrors: JSON.parse(err.responseText)
+        })
       }
     })
   }
 
   handleXClick () {
-    this.setState({showLogin: false, showSignup: false});
+    this.setState({showLogin: false, showSignup: false, loginErrors: null});
   }
 
-  tester (neighborhood) {
-    $.get(`/${neighborhood}`, function(data) {
+  getNeighborhood (neighborhood) {
+    $.get(`/${neighborhood}`, function(barsData) {
       var obj = {};
-      var arr = [];
-      data.forEach((item)=>{
-        if (!obj[item.name]) {
-          obj[item.name] = true;
+      barsData.forEach((bar)=>{
+        if (!obj[bar.name]) {
+          obj[bar.name] = true;
         }
       });
       var newArr = Object.keys(obj).map(function(item) {
@@ -161,7 +163,7 @@ class App extends React.Component {
         returnObj.location = '';
         returnObj.start = '';
         returnObj.end = '';
-        data.forEach(function(item2) {
+        barsData.forEach(function(item2) {
           if (returnObj.name === item2.name) {
             returnObj.attributes.push(item2.attribute);
             if (!returnObj.location && !returnObj.start && !returnObj.end && !returnObj.category) {
@@ -235,7 +237,7 @@ class App extends React.Component {
       }
 
       {this.state.showLogin ?
-        <Login loginUser = {this.loginUser} handleXClick={this.handleXClick}/> :
+        <Login loginUser = {this.loginUser} handleXClick={this.handleXClick} loginErrors={this.state.loginErrors}/> :
           null
       }
 
@@ -253,11 +255,10 @@ class App extends React.Component {
           //<div className="HoodSelectionDiv"><h2>{this.state.neighborhood}</h2></div>
           <BackButton hood={this.state.neighborhood} handleBackButtonClick={this.handleBackButtonClick}/>
 
-
       }
 
       { this.state.showChooseHood ? this.state.neighborhoods.map(hood =>
-         <ListOfHoods neighborhood={hood.name} neighborhoodID={hood.id} tester={this.tester} handleChoice={this.handleNeighborhoodChoice}/>
+         <ListOfHoods neighborhood={hood.name} neighborhoodID={hood.id} getNeighborhood={this.getNeighborhood} handleChoice={this.handleNeighborhoodChoice}/>
        )
        : null }
 
@@ -281,9 +282,6 @@ class App extends React.Component {
            bar.category === this.state.vibeID ? <VibesMatchList bar={bar} userID={this.state.userID} addUserFave={this.addUserFave}/> : null
          ) : null
        }
-
-
-
     </div>
     );
   }

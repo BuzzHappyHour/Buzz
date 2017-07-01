@@ -63,7 +63,7 @@ INSERT INTO attributes (attribute) values ('wifi');
 INSERT INTO attributes (attribute) values ('nice people');
 INSERT INTO attributes (attribute) values ('good music');
 INSERT INTO attributes (attribute) values ('Live Band');
-INSERT INTO attributes (attribute) values ('Retirment Home');
+INSERT INTO attributes (attribute) values ('Retirement Home');
 INSERT INTO attributes (attribute) values ('Pour House');
 INSERT INTO attributes (attribute) values ('Gastropub');
 INSERT INTO attributes (attribute) values ('Seafood');
@@ -145,7 +145,7 @@ INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values
 INSERT INTO bars_attributes(bar_id, attribute_id) values (18, 12);
 
 INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Press Club', '20 Yerba Buena Lane', 2, 2, 1600, 1800);
-INSERT INTO bars_attributes(bar_id, attribute_id) values (19, 6); 
+INSERT INTO bars_attributes(bar_id, attribute_id) values (19, 6);
 
 INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Showdown', '10 6th St', 2, 1, 1700, 2000);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (20, 15);
@@ -269,26 +269,3 @@ INSERT INTO bars_attributes(bar_id, attribute_id) values (55, 4);
 
 INSERT INTO bars (name, location, neighborhood, category, hhstart, hhend) values ('Muka', '370 Grove St', 3, 2, 1400, 2000);
 INSERT INTO bars_attributes(bar_id, attribute_id) values (56, 4);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
