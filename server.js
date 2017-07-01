@@ -18,13 +18,13 @@ app.use('/', express.static(__dirname + '/client'));
 app.get('/bars', db.getAllBars);
 app.get('/Tenderloin', (req, res)=>db.getAttributes(req, res, 1));
 app.get('/SOMA', (req, res)=>db.getAttributes(req, res, 2));
-app.get('/categories', db.getAllCategories);
-app.get('/attributes', (req, res)=>db.getAttributes(req, res, 2));
 app.get('/Hayes%20Valley', (req, res) => db.getAttributes(req, res, 3));
 app.get('/Union%20Square/FiDi', (req, res) => db.getAttributes(req, res, 4));
+app.get('/categories', db.getAllCategories);
+app.get('/attributes', (req, res)=>db.getAttributes(req, res, 2));
 
 app.post('/signup', db.postUsers);
-app.get('/login', db.checkUser);
+app.post('/login', db.checkUser);
 
 app.post('/adduserfave', db.addToUserFavs);
 app.post('/getuserfaves', db.getUserFaves);
