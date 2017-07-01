@@ -236,6 +236,14 @@ button {
     border-radius: 10px;
 }
 
+.loginErrors {
+  font-size: 12px;
+  color: red;
+  position: absolute;
+  top: 180px;
+  left: 20px;
+}
+
 .SignupButton {
   font-family: 'COUTUREBold';
   margin: auto;
