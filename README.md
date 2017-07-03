@@ -6,10 +6,10 @@
 
 ## Team
 
-  - Devon Weldon(www.github.com/devonw)
-  - Matthew Aguirre(www.github/m-aguirre)
-  - Tabitha Hsia(www.github.com/tabithahsia)
-  - Yurika Jacobsson(www.github.com/nakiruy)
+  - [Devon Weldon](www.github.com/devonw)
+  - [Matthew Aguirre](www.github/m-aguirre)
+  - [Tabitha Hsia](www.github.com/tabithahsia)
+  - [Yurika Jacobsson](www.github.com/nakiruy)
 
 ## Table of Contents
 
