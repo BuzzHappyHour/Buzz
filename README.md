@@ -7,7 +7,7 @@
 ## Team
 
   - [Devon Weldon](www.github.com/devonw)
-  - [Matthew Aguirre](www.github/m-aguirre)
+  - [Matthew Aguirre](www.github.com/m-aguirre)
   - [Tabitha Hsia](www.github.com/tabithahsia)
   - [Yurika Jacobsson](www.github.com/nakiruy)
 
